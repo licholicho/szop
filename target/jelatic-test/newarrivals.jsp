@@ -27,13 +27,13 @@
 		<table id="mtable" border="1">
 
 
-			<c:forEach var="product" items="${productList}">
+			<c:forEach var="prod" items="${productList}">
 
 				<tr>
-
-					<td>${product.getProductName()}</td>
-					<td>${product.getSupplierName()}</td>
-					<td>${product.getPrice()}</td>
+					<td>${prod.getProductName()}</td>
+					<td>${prod.getSupplierName()}</td>
+					<td>${prod.getPrice()}</td>
+					<td><%@include file="session_cart.jsp"%></td>
 				</tr>
 			</c:forEach>
 		</table>

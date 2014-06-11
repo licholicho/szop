@@ -31,18 +31,28 @@ public class SearchServlet extends HttpServlet {
 	        request.setCharacterEncoding("UTF-8");
 	        String productToSearch = request.getParameter("product");
 	        String category = request.getParameter("category");
+	        int page = 1;
+	        if (request.getParameter("page") != null) {
+	            page = Integer.parseInt(request.getParameter("page"));
+	        }
 	        
-	        Message m = new Message();
+	        int recordsPerPage = 5;
 	        
 	        ProductDAO productdao = (ProductDAO) getServletContext().getAttribute("productDAO");
 	        CategoryDAO categorydao = (CategoryDAO) getServletContext().getAttribute("categoryDAO");
 	        
-	        List<Product> prodList = productdao.viewProductsByCategory(productToSearch, category);
+	        List<Product> prodList = productdao.viewProductsByCategory(productToSearch, category, (page - 1) * recordsPerPage, recordsPerPage);
+	        List<Product> all = productdao.viewAllProducts((page - 1) * recordsPerPage, recordsPerPage);
 	        List<Category> catList = categorydao.viewAllCategories();
 	        request.setAttribute("categoryList", catList);
 	        request.setAttribute("productList", prodList);
-	        m.setLoginMessage(productToSearch);
-	        request.setAttribute("message", m);
+	        request.setAttribute("allList", all);
+	        request.setAttribute("liczba", prodList.size());
+	        int noOfRecords = productdao.getNoOfRecords();
+	        int noOfPages = (int) Math.ceil(noOfRecords * 1.0 / recordsPerPage);
+	        request.setAttribute("productList", prodList);
+	        request.setAttribute("noOfPagesS", noOfPages);
+	        request.setAttribute("currentPageS", page);
 	        RequestDispatcher dis = request.getRequestDispatcher("search.jsp");
 	        dis.forward(request, response);
 	 }

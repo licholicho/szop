@@ -24,13 +24,57 @@ public class ProductDAO extends AbstractDAO {
 			if (productName != "") {
 					sql +=" and p.Product_Name REGEXP ?";
 			}
-		
+			
 			pst = con.prepareStatement(sql);
 			pst.setString(1, category);
 			
 			if (productName != "") {
 				pst.setString(2, productName);
 		}
+			ResultSet rs = pst.executeQuery();
+			while (rs.next()) {
+				Product product = new Product.ProductBuilder()
+						.id(rs.getInt("Product_Id"))
+						.productName(rs.getString("Product_Name"))
+						.productDescription(rs.getString("Product_Description"))
+						.build();
+				list.add(product);
+			}
+			return list;
+		} catch (Exception e) {
+			System.out.println(e);
+			return list;
+		} finally {
+		closeQuietly(pst, con);
+		}
+
+	}
+	
+	public List<Product> viewProductsByCategory(String productName, String category, int offset, int noOfRecords) {
+		Connection con = null;
+		PreparedStatement pst = null;
+		List<Product> list = new ArrayList<Product>();
+		try {
+			con = getConnection();
+			
+			String sql = "select p.Product_Id, p.Product_Name, p.Product_Description from Product p left join Category c "
+					+"on p.Category_Id = c.Category_Id where c.Category_Name = ?";
+			if (productName != "") {
+					sql +=" and p.Product_Name REGEXP ?";
+			}
+			
+			pst = con.prepareStatement(sql);
+			int k = 1;
+			pst.setString(k, category);
+			k++;		
+			if (productName != "") {
+				pst.setString(k, productName);
+				k++;
+		}
+			sql += " limit ?, ?";
+			pst.setInt(k, offset);
+			k++;
+			pst.setInt(k, noOfRecords);
 			ResultSet rs = pst.executeQuery();
 			while (rs.next()) {
 				Product product = new Product.ProductBuilder()

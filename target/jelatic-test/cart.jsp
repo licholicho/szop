@@ -26,7 +26,11 @@
       				 <tr>                    
                     <td>${product.getProductName()}</td>
                     <td>${product.getPrice()}0 zl</td>
-                    <td><a id="cart" href="remove/${c.index}">Usun</a> </td>
+                <!--    <td><a id="cart" href="remove/${c.index}">Usun</a> </td> -->  
+                    <td>	<form name="myremove" action="/remove" method="POST">
+									<input type="hidden" name="toRemove" value="${c.index}">
+									<input type="submit" value="Usun" />
+								</form>
                     </tr>
         </c:forEach>
         <tr>
