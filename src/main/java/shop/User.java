@@ -1,7 +1,5 @@
 package shop;
 
-import java.util.Comparator;
-import java.util.Date;
 
 public class User {
 
@@ -11,7 +9,7 @@ public class User {
 	String login;
 	String password;
 	String email;
-	Date dateFrom;
+	
 	
 	public User(String login, String password) {
 		super();

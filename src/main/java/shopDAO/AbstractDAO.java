@@ -7,9 +7,9 @@ import java.sql.Statement;
 
 public class AbstractDAO {
 
-	protected static String URL = "jdbc:mysql://mysql-env-8780654.jelastic.dogado.eu/test"; 
+	protected static String URL = "jdbc:mysql://mysql-env-8290494.jelastic.dogado.eu/test"; 
 	protected static String login = "root";
-	protected static String pass = "Dmxg4FT1R4";
+	protected static String pass = "PH3I8DThX2";
 
 		public static Connection getConnection() throws SQLException, ClassNotFoundException {
 			Class.forName("com.mysql.jdbc.Driver");

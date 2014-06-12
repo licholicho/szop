@@ -41,10 +41,10 @@
 				<artifactId>jelastic-maven-plugin</artifactId>
 				<version>1.7</version>
 				<configuration>
-					<email>ariwle.lichocka@gmail.com</email>
-					<password>eXMVucfJ3e</password>
+					<email>elvira_star@buziaczek.pl</email>
+					<password>XXq6rQsXLl</password>
 					<!-- <context>[specify the context if you need it]</context> -->
-					<environment>env-8780654</environment>
+					<environment>env-8290494</environment>
 					<comment>comment</comment>
 
 					<api_hoster>app.jelastic.dogado.eu</api_hoster>

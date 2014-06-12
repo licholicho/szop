@@ -1,13 +1,8 @@
 package shopDAO;
 
-import helpers.DbTools;
-import helpers.Encryption;
-
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 
 import shop.User;
 
@@ -45,7 +40,7 @@ public class CustomerDAO extends AbstractDAO {
         PreparedStatement pst = null;
         try {
              con = getConnection();
-             String sql = "INSERT INTO Customer (Customer_Nick, Customer_Pass) values(?,?)";
+             String sql = "INSERT INTO User (User_Nick, User_Pass) values(?,?)";
              pst = con.prepareStatement(sql);
              pst.setString(1,user.getLogin());
              pst.setString(2, user.getPassword());
@@ -64,7 +59,7 @@ public class CustomerDAO extends AbstractDAO {
         PreparedStatement pst = null;
         try {
              con = getConnection();
-             String sql = "SELECT * FROM Customer WHERE Customer_Nick=?";
+             String sql = "SELECT * FROM User WHERE User_Nick=?";
              pst = con.prepareStatement(sql);
              pst.setString(1, login);
              ResultSet rs = pst.executeQuery();
@@ -87,7 +82,7 @@ public class CustomerDAO extends AbstractDAO {
         PreparedStatement pst = null;
         try {
              con = getConnection();
-             String sql = "SELECT * FROM Customer WHERE Customer_Nick=? AND Customer_Pass=?";
+             String sql = "SELECT * FROM User WHERE User_Nick=? AND User_Pass=?";
              pst = con.prepareStatement(sql);
              pst.setString(1, User.getLogin());
              pst.setString(2, User.getPassword());
