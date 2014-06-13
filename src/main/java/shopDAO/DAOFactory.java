@@ -12,8 +12,8 @@ public class DAOFactory {
 			return factory;
 	}
 	
-	public CustomerDAO getCustomerDAO() {
-		return new CustomerDAO();
+	public UserDAO getCustomerDAO() {
+		return new UserDAO();
 	}
 	
 	public OrderDAO getOrderDAO() {

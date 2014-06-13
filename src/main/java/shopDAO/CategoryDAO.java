@@ -26,7 +26,7 @@ public class CategoryDAO extends AbstractDAO {
 			}
 			return list;
 		} catch (Exception e) {
-			System.out.println(e);
+			e.printStackTrace();
 			return list;
 		} finally {
 			closeQuietly(pst, con);

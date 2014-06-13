@@ -29,6 +29,7 @@ public class AbstractDAO {
                 c.close();
             }
         } catch (SQLException ex) {
+        	ex.printStackTrace();
         }
     }
 }

@@ -18,7 +18,7 @@ public class DAOListener implements ServletContextListener {
 
 	public void contextInitialized(ServletContextEvent sce) {
 		DAOFactory factory = DAOFactory.getInstance();
-		CustomerDAO customerdao = factory.getCustomerDAO();
+		UserDAO customerdao = factory.getCustomerDAO();
 		ProductDAO productdao = factory.getProductDAO();
 		CategoryDAO categorydao = factory.getCategoryDAO();
 		sce.getServletContext().setAttribute("customerDAO", customerdao);

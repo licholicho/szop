@@ -3,30 +3,32 @@ package shopDAO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import shop.User;
 
 
-public class CustomerDAO extends AbstractDAO {
+public class UserDAO extends AbstractDAO implements ICustomerDAO {
 
 
 		public User getUser(int id) {
 			Connection c = null;
 			PreparedStatement s = null;
-			String sql = "SELECT * FROM User WHERE ID = ?";
+			String sql = "SELECT * FROM User WHERE User_Id = ?";
 			try {
 				c = getConnection();
 				s = c.prepareStatement(sql);
 				s.setInt(1, id);
 				ResultSet r = s.executeQuery();
 				while (r.next()) {
-					String firstName = r.getString("Nick");
+					String firstName = r.getString("User_Nick");
 					String lastName = r.getString("User_Pass");
 					User u = new User(firstName, lastName, id);
 					return u;
 				}
 				return null;
-			} catch (Exception e) {
+			} catch (SQLException | ClassNotFoundException e) {
+				e.printStackTrace();
 				return null;
 			} finally {
 				closeQuietly(s, c);

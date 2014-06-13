@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import shop.User;
-import shopDAO.CustomerDAO;
+import shopDAO.UserDAO;
 
 @WebServlet("/register")
 public class SignupServlet extends HttpServlet {
@@ -52,7 +52,7 @@ public class SignupServlet extends HttpServlet {
 	            isError = true;
 	        }
 
-	        CustomerDAO dao = (CustomerDAO) getServletContext().getAttribute("customerDAO");
+	        UserDAO dao = (UserDAO) getServletContext().getAttribute("customerDAO");
 	        
 	        if (dao.isUserWithLogin(login)) {
 	            loginMessage = "Uzytkownik z takim loginem istnieje";
