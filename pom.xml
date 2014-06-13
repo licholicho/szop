@@ -32,26 +32,52 @@
 			<scope>runtime</scope>
 		</dependency>
 	</dependencies>
-	<build>
-		<finalName>jelatic-test</finalName>
 
-		<plugins>
-			<plugin>
-				<groupId>com.jelastic</groupId>
-				<artifactId>jelastic-maven-plugin</artifactId>
-				<version>1.7</version>
-				<configuration>
-					<email>elvira_star@buziaczek.pl</email>
-					<password>XXq6rQsXLl</password>
-					<!-- <context>[specify the context if you need it]</context> -->
-					<environment>env-8290494</environment>
-					<comment>comment</comment>
+	<profiles>
+		<profile>
+			<id>production</id>
+						<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<build>
+				<finalName>jelatic-test</finalName>
+				<plugins>
+					<plugin>
+						<groupId>com.jelastic</groupId>
+						<artifactId>jelastic-maven-plugin</artifactId>
+						<version>1.7</version>
+						<configuration>
+							<email>elvira_star@buziaczek.pl</email>
+							<password>XXq6rQsXLl</password>
+							<!-- <context>[specify the context if you need it]</context> -->
+							<environment>env-8290494</environment>
+							<comment>comment</comment>
 
-					<api_hoster>app.jelastic.dogado.eu</api_hoster>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
+							<api_hoster>app.jelastic.dogado.eu</api_hoster>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		<profile>
+			<id>development</id>
+
+			<build>
+				<plugins>
+					<!-- Maven Tomcat Plugin -->
+					<plugin>
+						<groupId>org.apache.tomcat.maven</groupId>
+						<artifactId>tomcat7-maven-plugin</artifactId>
+						<version>2.0</version>
+						<configuration>
+							<url>http://localhost:8080/manager/text</url>
+							<server>tomcat</server>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
 
 	<pluginRepositories>
 		<pluginRepository>

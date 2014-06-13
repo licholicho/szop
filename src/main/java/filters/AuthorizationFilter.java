@@ -27,11 +27,12 @@ public class AuthorizationFilter implements Filter {
         Scanner scanner = new Scanner(is);
         while (scanner.hasNextLine()) {
             allowedAddresses.add(scanner.nextLine().trim());
-        }               
+        }
+        System.out.println(allowedAddresses.toString());
     }
 
     public void doFilter(ServletRequest req, ServletResponse resp, FilterChain fc) throws IOException, ServletException {
-        HttpServletRequest httpReq = (HttpServletRequest) req;
+    	HttpServletRequest httpReq = (HttpServletRequest) req;
         HttpServletResponse httpRes = (HttpServletResponse) resp;
         HttpSession session = httpReq.getSession();
         String login = (String) session.getAttribute("user");
@@ -40,10 +41,11 @@ public class AuthorizationFilter implements Filter {
         } else {
             String path = httpReq.getServletPath();
             System.out.println(path);
+            System.out.println(allowedAddresses.contains(path));
             if (allowedAddresses.contains(path)) {
                 fc.doFilter(req, resp);
             } else {
-            	httpRes.sendError(401, "Musisz byæ zalogowany by wejœæ na stronê g³ówn¹!");
+            	httpRes.sendError(401, "Musisz byï¿½ zalogowany by wejï¿½ï¿½ na stronï¿½ gï¿½ï¿½wnï¿½!");
             }
         }
     }
