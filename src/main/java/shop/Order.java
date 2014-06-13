@@ -8,8 +8,7 @@ public class Order {
 	private Date orderDate;
 	private long customerId;
 	private String shipping;
-	
-	
+		
 	public long getId() {
 		return id;
 	}

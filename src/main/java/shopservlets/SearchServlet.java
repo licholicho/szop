@@ -1,8 +1,7 @@
 package shopservlets;
 
-import helpers.Message;
-
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -31,6 +30,8 @@ public class SearchServlet extends HttpServlet {
 	        request.setCharacterEncoding("UTF-8");
 	        String productToSearch = request.getParameter("product");
 	        String category = request.getParameter("category");
+	        PrintWriter p = response.getWriter();
+	      
 	        int page = 1;
 	        if (request.getParameter("page") != null) {
 	            page = Integer.parseInt(request.getParameter("page"));
@@ -42,6 +43,7 @@ public class SearchServlet extends HttpServlet {
 	        CategoryDAO categorydao = (CategoryDAO) getServletContext().getAttribute("categoryDAO");
 	        
 	        List<Product> prodList = productdao.viewProductsByCategory(productToSearch, category, (page - 1) * recordsPerPage, recordsPerPage);
+	        if (category != null )p.println("jupiiiii"+prodList.size());
 	        List<Product> all = productdao.viewAllProducts((page - 1) * recordsPerPage, recordsPerPage);
 	        List<Category> catList = categorydao.viewAllCategories();
 	        request.setAttribute("categoryList", catList);
@@ -50,7 +52,6 @@ public class SearchServlet extends HttpServlet {
 	        request.setAttribute("liczba", prodList.size());
 	        int noOfRecords = productdao.getNoOfRecords();
 	        int noOfPages = (int) Math.ceil(noOfRecords * 1.0 / recordsPerPage);
-	        request.setAttribute("productList", prodList);
 	        request.setAttribute("noOfPagesS", noOfPages);
 	        request.setAttribute("currentPageS", page);
 	        RequestDispatcher dis = request.getRequestDispatcher("search.jsp");

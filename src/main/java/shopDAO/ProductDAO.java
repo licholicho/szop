@@ -67,7 +67,7 @@ public class ProductDAO extends AbstractDAO {
 			int k = 1;
 			pst.setString(k, category);
 			k++;		
-			if (productName != "") {
+			if ((productName != null) && (productName != "")) {
 				pst.setString(k, productName);
 				k++;
 		}

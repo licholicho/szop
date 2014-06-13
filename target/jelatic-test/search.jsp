@@ -35,7 +35,6 @@
 							<option value="${cat.getCategoryName()}">${cat.getCategoryName()}</option>
 						</c:forEach>
 				</select></td>
-
 				<td><input type="submit" value="Szukaj" /></td>
 
 			</tr>
