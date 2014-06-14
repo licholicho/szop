@@ -13,6 +13,6 @@ public class PayPalStrategy implements PaymentStrategy {
 	    }
 	     
 	    public String pay(double amount) {
-	        return amount + " zap³acono za pomoc¹ Paypal.";
+	        return amount + " zaplacono za pomoca Paypal.";
 	    }
 }

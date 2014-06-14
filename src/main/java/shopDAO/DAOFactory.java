@@ -1,16 +1,15 @@
 package shopDAO;
 
-public class DAOFactory {
-	private static DAOFactory factory;
-	
-	private DAOFactory() {}
-	
-	public static DAOFactory getInstance() {
-		if (factory == null) 
-			return new DAOFactory();
-		else 
-			return factory;
-	}
+public class DAOFactory implements IDAOFactory{
+//	private static DAOFactory factory;
+//	
+//	private DAOFactory() {}
+//	
+//	public static DAOFactory getInstance() {
+//		if (factory == null)
+//			factory = new DAOFactory();
+//		return factory;
+//	}
 	
 	public UserDAO getCustomerDAO() {
 		return new UserDAO();

@@ -41,7 +41,8 @@ public class SearchServlet extends HttpServlet {
 	        
 	        ProductDAO productdao = (ProductDAO) getServletContext().getAttribute("productDAO");
 	        CategoryDAO categorydao = (CategoryDAO) getServletContext().getAttribute("categoryDAO");
-	        
+	        if(productdao == null) 
+	        	System.out.println("null");
 	        List<Product> prodList = productdao.viewProductsByCategory(productToSearch, category, (page - 1) * recordsPerPage, recordsPerPage);
 	        if (category != null )p.println("jupiiiii"+prodList.size());
 	        List<Product> all = productdao.viewAllProducts((page - 1) * recordsPerPage, recordsPerPage);

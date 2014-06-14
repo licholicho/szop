@@ -86,7 +86,7 @@ public class ProductDAO extends AbstractDAO {
 			}
 			return list;
 		} catch (Exception e) {
-			System.out.println(e);
+			e.printStackTrace();
 			return list;
 		} finally {
 		closeQuietly(pst, con);
@@ -116,7 +116,7 @@ public class ProductDAO extends AbstractDAO {
 			}
 			return list;
 		} catch (Exception e) {
-			System.out.println(e);
+			e.printStackTrace();
 			return list;
 		} finally {
 			closeQuietly(pst, con);
@@ -138,7 +138,7 @@ public class ProductDAO extends AbstractDAO {
 			}
 			return productsNumber;
 		} catch (Exception e) {
-			System.out.println(e);
+			e.printStackTrace();
 			return productsNumber;
 		} finally {
 			closeQuietly(pst, con);

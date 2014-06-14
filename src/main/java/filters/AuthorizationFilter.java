@@ -28,7 +28,6 @@ public class AuthorizationFilter implements Filter {
         while (scanner.hasNextLine()) {
             allowedAddresses.add(scanner.nextLine().trim());
         }
-        System.out.println(allowedAddresses.toString());
     }
 
     public void doFilter(ServletRequest req, ServletResponse resp, FilterChain fc) throws IOException, ServletException {
@@ -41,7 +40,6 @@ public class AuthorizationFilter implements Filter {
         } else {
             String path = httpReq.getServletPath();
             System.out.println(path);
-            System.out.println(allowedAddresses.contains(path));
             if (allowedAddresses.contains(path)) {
                 fc.doFilter(req, resp);
             } else {

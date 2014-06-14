@@ -12,10 +12,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import shop.User;
+import shopDAO.IUserDAO;
 import cart.ShoppingCart;
 import decorators.ZlotyDekorator;
-import shop.User;
-import shopDAO.UserDAO;
 
 
 @WebServlet("/login")
@@ -60,7 +60,7 @@ public class LoginServlet extends HttpServlet {
 	            isError = true;	        
 	        }
 	        
-	        UserDAO dao = (UserDAO) getServletContext().getAttribute("customerDAO");
+	        IUserDAO dao = (IUserDAO) getServletContext().getAttribute("customerDAO");
 
 	        if (!dao.isUser(new User(login, Encryption.md5(pass)))) {
 	            loginMessage = "Zle dane logowania";

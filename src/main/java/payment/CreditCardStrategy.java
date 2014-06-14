@@ -17,7 +17,7 @@ public class CreditCardStrategy implements PaymentStrategy{
 	    }
 
 	    public String pay(double amount) {
-	        return amount +" zap³acono kart¹ kredytow¹.";
+	        return amount +" zaplacono karta kredytowa.";
 	    }
 	 
 
