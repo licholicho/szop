@@ -9,11 +9,11 @@ import decorators.ZlotyDekorator;
 
 public class Product implements Visitable {
 
-	private long id;
+	private int id;
 	private String productName;
 	private double price;
-	private long supplierId;
-	private long categoryId;
+	private int supplierId;
+	private int categoryId;
 	private Date dateFrom;
 	private String supplierName;
 	private String productDescription;
@@ -70,7 +70,7 @@ public class Product implements Visitable {
 			this.product.supplierName = supplierName;
 			return this;
 		}
-		public ProductBuilder id(long id) {
+		public ProductBuilder id(int id) {
 			this.product.id = id;
 			return this;
 		}
@@ -82,11 +82,11 @@ public class Product implements Visitable {
 			this.product.price = price;
 			return this;
 		}
-		public ProductBuilder supplierId(long supplierId) {
+		public ProductBuilder supplierId(int supplierId) {
 			this.product.supplierId = supplierId;
 			return this;
 		}
-		public ProductBuilder categoryId(long categoryId) {
+		public ProductBuilder categoryId(int categoryId) {
 			this.product.categoryId = categoryId;
 			return this;
 		}
