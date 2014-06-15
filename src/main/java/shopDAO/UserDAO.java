@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.sql.DataSource;
+
 import org.apache.log4j.Logger;
 
 import shop.User;
@@ -16,6 +18,10 @@ public class UserDAO extends AbstractDAO implements IUserDAO {
 	public static final String TABLE = "User";
 	public static final String NICK = "User_Nick";
 	public static final String PASS = "User_Pass";
+	
+	public UserDAO(DataSource ds) {
+		super(ds);
+	}
 	
 	private User resultSetToUser(ResultSet r) throws SQLException {
 		if (r.next()) {
@@ -76,7 +82,7 @@ public class UserDAO extends AbstractDAO implements IUserDAO {
 			pst = con.prepareStatement(sql);
 			pst.setString(1, login);
 			ResultSet rs = pst.executeQuery();
-			return getUser(login);
+			return resultSetToUser(rs);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;

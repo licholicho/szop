@@ -8,9 +8,15 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.sql.DataSource;
+
 import shop.Product;
 
 public class ProductDAO extends AbstractDAO {
+	
+	public ProductDAO(DataSource ds) {
+		super(ds);
+	}
 
 	public List<Product> viewProductsByCategory(String productName, String category) {
 		Connection con = null;

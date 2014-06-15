@@ -6,9 +6,15 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.sql.DataSource;
+
 import shop.Category;
 
 public class CategoryDAO extends AbstractDAO {
+	
+	public CategoryDAO(DataSource ds) {
+		super(ds);
+	}
 
 	public List<Category> viewAllCategories() {
 		Connection con = null;

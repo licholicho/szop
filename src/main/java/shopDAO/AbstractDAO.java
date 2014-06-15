@@ -5,27 +5,23 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import javax.sql.DataSource;
+
 public class AbstractDAO {
-	private static boolean dev = true;
 
-	protected static String URL = "jdbc:mysql://mysql-env-8290494.jelastic.dogado.eu/test";
-	protected static String login = "root";
-	protected static String pass = "PH3I8DThX2";
+	private DataSource ds;
 
-	protected static String URLdev = "jdbc:mysql://localhost/test";
-	protected static String logindev = "root";
-	protected static String passdev = "ciocia";
+	AbstractDAO(DataSource ds) {
+		this.ds = ds;
+	}
 
-	public static Connection getConnection() throws SQLException,
+	public Connection getConnection() throws SQLException,
 			ClassNotFoundException {
-		Class.forName("com.mysql.jdbc.Driver");
-		if (dev) {
-			System.out.println("jest_dev");
-			return DriverManager.getConnection(URLdev, logindev, passdev);
-		}
-		else
-			System.out.println("jest_srod");
-			return DriverManager.getConnection(URL, login, pass);
+		return ds.getConnection();
+	}
+
+	void setDataSource(DataSource ds) {
+		this.ds = ds;
 	}
 
 	public static void closeQuietly(Statement s, Connection c) {
@@ -40,4 +36,5 @@ public class AbstractDAO {
 			ex.printStackTrace();
 		}
 	}
+
 }

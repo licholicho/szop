@@ -25,6 +25,7 @@
 
 
 	<form method="post" action="/search">
+	Kup kup
 		<table>
 			<tr>
 				<td>Nazwa produktu:</td>

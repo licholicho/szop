@@ -1,15 +1,19 @@
 package shopDAO;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
+import javax.sql.DataSource;
 
+import shopCacheDAO.CacheConfig;
 import shopCacheDAO.DAOCacheFactory;
 import cart.Shipping;
 
 @WebListener
 public class DAOListener implements ServletContextListener {
-	private static final boolean cache = false;
+	private static final boolean cache = true;
 	
 	public void contextDestroyed(ServletContextEvent sce) {
 		
@@ -17,20 +21,20 @@ public class DAOListener implements ServletContextListener {
 
 	
 	public void contextInitialized(ServletContextEvent sce) {
-//		InitialContext initContext;
-//		DataSource dataSource = null;
-//		try {
-//			initContext = new InitialContext();
-//			Context envContext  = (Context)initContext.lookup("java:/comp/env");
-//	        dataSource = (DataSource)envContext.lookup("jdbc/mkyongdb");
-//		} catch (NamingException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//
-//        System.out.println(dataSource.toString());
-        
-		IDAOFactory factory = cache ? new DAOCacheFactory() : new DAOFactory();
+		InitialContext initContext;
+		DataSource ds = null;
+		CacheConfig cacheConfig = null;
+		try {
+			initContext = new InitialContext();
+			Context envContext  = (Context)initContext.lookup("java:/comp/env");
+	        ds = (DataSource)envContext.lookup("jdbc/mysql");	        
+			cacheConfig = (CacheConfig) envContext.lookup("bean/CacheConfigFactory");
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		IDAOFactory factory = cache ? new DAOCacheFactory(ds, cacheConfig) : new DAOFactory(ds);
 		IUserDAO customerdao = factory.getCustomerDAO();
 		ProductDAO productdao = factory.getProductDAO();
 		CategoryDAO categorydao = factory.getCategoryDAO();
