@@ -38,9 +38,11 @@ public class DAOListener implements ServletContextListener {
 		IUserDAO customerdao = factory.getCustomerDAO();
 		ProductDAO productdao = factory.getProductDAO();
 		CategoryDAO categorydao = factory.getCategoryDAO();
+		SupplierDAO supplierdao = factory.getSupplierDAO();
 		sce.getServletContext().setAttribute("customerDAO", customerdao);
 		sce.getServletContext().setAttribute("productDAO", productdao);
 		sce.getServletContext().setAttribute("categoryDAO", categorydao);
+		sce.getServletContext().setAttribute("supplierDAO", supplierdao);
 		
 		Shipping kurier = new Shipping("Kurier",15.0);
 		Shipping poczta = new Shipping("Poczta Polska", 12.0);

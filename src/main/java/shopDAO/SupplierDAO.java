@@ -6,30 +6,24 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.sql.DataSource;
+import shop.Supplier;
 
-import shop.Category;
+public class SupplierDAO extends AbstractDAO {
 
-public class CategoryDAO extends AbstractDAO {
-	
-	public CategoryDAO(DataSource ds) {
-		super(ds);
-	}
-
-	public List<Category> viewAllCategories() {
+	public List<Supplier> viewAllSuppliers() {
 		Connection con = null;
 		PreparedStatement pst = null;
-		List<Category> list = new ArrayList<Category>();
+		List<Supplier> list = new ArrayList<Supplier>();
 		try {
 			con = getConnection();
-			String sql = "select Category_Id, Category_Name from Category";
+			String sql = "select Supplier_Id, Supplier_Name from Supplier";
 			pst = con.prepareStatement(sql);
 			ResultSet rs = pst.executeQuery();
 			while (rs.next()) {
-				Category category = new Category();
-				category.setId(rs.getInt("Category_Id"));
-				category.setCategoryName(rs.getString("Category_Name"));
-				list.add(category);
+				Supplier supplier = new Supplier();
+				supplier.setId(rs.getInt("Supplier_Id"));
+				supplier.setName(rs.getString("Supplier_Name"));
+				list.add(supplier);
 			}
 			return list;
 		} catch (Exception e) {
@@ -41,12 +35,12 @@ public class CategoryDAO extends AbstractDAO {
 
 	}
 	
-	public boolean addCategory(String name) {
+	public boolean addSupplier(String name) {
 		Connection con = null;
 		PreparedStatement pst = null;
 		try {
 			con = getConnection();
-			String sql = "INSERT INTO Category (Category_Name) values (?) ";
+			String sql = "INSERT INTO Supplier (Supplier_Name) values (?) ";
 			pst = con.prepareStatement(sql);
 			pst.setString(1, name);	
 			return pst.execute();

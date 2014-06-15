@@ -2,23 +2,23 @@ package shop;
 
 public class Order_Detail {
 
-	private long orderId;
-	private long productId;
+	private int orderId;
+	private int productId;
 	private double price;
 	private int quantity;
 	private double discount;
 	
 	
-	public long getOrderId() {
+	public int getOrderId() {
 		return orderId;
 	}
-	public void setOrderId(long orderId) {
+	public void setOrderId(int orderId) {
 		this.orderId = orderId;
 	}
-	public long getProductId() {
+	public int getProductId() {
 		return productId;
 	}
-	public void setProductId(long productId) {
+	public void setProductId(int productId) {
 		this.productId = productId;
 	}
 	public double getPrice() {

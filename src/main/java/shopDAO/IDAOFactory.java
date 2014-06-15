@@ -5,4 +5,5 @@ public interface IDAOFactory {
 	public OrderDAO getOrderDAO();
 	public ProductDAO getProductDAO();
 	public CategoryDAO getCategoryDAO();
+	public SupplierDAO getSupplierDAO();
 }

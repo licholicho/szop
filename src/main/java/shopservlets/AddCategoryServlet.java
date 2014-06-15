@@ -9,27 +9,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import cart.ShoppingCart;
-import cart.Visitable;
+import shopDAO.CategoryDAO;
 
-@WebServlet("/remove")
-public class RemoveProductServlet  extends HttpServlet {
-
+@WebServlet("/addcat")
+public class AddCategoryServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		 ShoppingCart cart = (ShoppingCart) request.getSession().getAttribute("cart");
-		 String ids = request.getParameter("toRemove");
-		 int id = Integer.valueOf(ids);
-		 Visitable product = cart.getList().get(id);
-		 cart.removeProduct(product);
-		 RequestDispatcher view = request.getRequestDispatcher("/cart");
+		 CategoryDAO categorydao = (CategoryDAO) getServletContext().getAttribute("categoryDAO");
+		 String name = request.getParameter("newcat");
+		 categorydao.addCategory(name);
+		 RequestDispatcher view = request.getRequestDispatcher("/addproduct");
 	     view.forward(request, response);
-		 
-	}
-	
-
-		
-		 
-		 
-	 }
-
+}
+}

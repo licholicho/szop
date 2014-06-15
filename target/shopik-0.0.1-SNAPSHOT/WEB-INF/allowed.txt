@@ -1,9 +1,0 @@
-/
-/welcome.jsp
-/register
-/login
-/logout
-/search
-/newarrivals
-/styles.css
-/home

@@ -16,8 +16,8 @@ import shop.Product;
 import shopDAO.CategoryDAO;
 import shopDAO.ProductDAO;
 
-@WebServlet("/search")
-public class SearchServlet extends HttpServlet {
+@WebServlet("/browse")
+public class BrowseProducts extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		processRequest(request, response);
 	}
@@ -28,8 +28,8 @@ public class SearchServlet extends HttpServlet {
 	 private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		    response.setContentType("text/html;charset=UTF-8");
 	        request.setCharacterEncoding("UTF-8");
-	        String productToSearch = request.getParameter("product");
-	        String category = request.getParameter("category");
+	        String productToSearch = request.getParameter("producta");
+	        String category = request.getParameter("categorya");
 	        PrintWriter p = response.getWriter();
 	      
 	        int page = 1;
@@ -52,7 +52,9 @@ public class SearchServlet extends HttpServlet {
 	        int noOfPages = (int) Math.ceil(noOfRecords * 1.0 / recordsPerPage);
 	        request.setAttribute("noOfPagesS", noOfPages);
 	        request.setAttribute("currentPageS", page);
-	        RequestDispatcher dis = request.getRequestDispatcher("search.jsp");
+	        
+	        RequestDispatcher dis = request.getRequestDispatcher("browse.jsp");
 	        dis.forward(request, response);
 	 }
+
 }

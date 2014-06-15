@@ -7,6 +7,7 @@ import shopDAO.IDAOFactory;
 import shopDAO.IUserDAO;
 import shopDAO.OrderDAO;
 import shopDAO.ProductDAO;
+import shopDAO.SupplierDAO;
 import shopDAO.UserDAO;
 
 public class DAOCacheFactory implements IDAOFactory {
@@ -33,5 +34,10 @@ public class DAOCacheFactory implements IDAOFactory {
 	
 	public CategoryDAO getCategoryDAO() {
 		return new CategoryDAO(ds);
+	}
+
+	@Override
+	public SupplierDAO getSupplierDAO() {
+		return new SupplierDAO();
 	}
 }

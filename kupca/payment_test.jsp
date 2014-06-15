@@ -1,6 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:choose>
-<c:when test="${pay == "PayPalStrategy"}">
+<c:when test="${pay}  == "PayPalStrategy"">
 <h3></h3>
 </c:when>
 <c:otherwise>

@@ -40,4 +40,8 @@ public class DAOFactory implements IDAOFactory{
 	public CategoryDAO getCategoryDAO() {
 		return new CategoryDAO(ds);
 	}
+	
+	public SupplierDAO getSupplierDAO() {
+		return new SupplierDAO();
+	}
 }

@@ -55,7 +55,7 @@
 					</tr>
 
 					<tr>
-						<td>${prod.getProductDescription()}</td>
+						<td>asfa ea   ${prod.getProductDescription()}</td>
 					</tr>
 					<br>
 				</c:forEach>

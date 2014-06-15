@@ -1,10 +1,11 @@
 package shopDAO;
 
-import helpers.DbTools;
-
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -68,7 +69,7 @@ public class ProductDAO extends AbstractDAO {
 			if (productName != "") {
 					sql +=" and p.Product_Name REGEXP ?";
 			}
-			
+			sql += " limit ?, ?";
 			pst = con.prepareStatement(sql);
 			int k = 1;
 			pst.setString(k, category);
@@ -77,7 +78,6 @@ public class ProductDAO extends AbstractDAO {
 				pst.setString(k, productName);
 				k++;
 		}
-			sql += " limit ?, ?";
 			pst.setInt(k, offset);
 			k++;
 			pst.setInt(k, noOfRecords);
@@ -177,4 +177,66 @@ public class ProductDAO extends AbstractDAO {
 		}
 
 	}
+
+	public boolean addProduct(String name, String desc, String cat, String supplier, String price) {
+		Connection con = null;
+		PreparedStatement pst = null;
+		try {
+			con = getConnection();
+			con.setAutoCommit(false); 
+			String sql = "INSERT INTO Product (Product_Name, Product_Description, Category_Id, "
+					+ "Supplier_Id, Unit_Price, Date_From) values (?, ?, ?, ?, ?, curdate())";
+			pst = con.prepareStatement(sql);
+			pst.setString(1, name);
+			pst.setString(2, desc);
+			pst.setInt(3, Integer.parseInt(cat));
+			pst.setInt(4, Integer.parseInt(supplier));
+			pst.setDouble(5, Double.parseDouble(price));
+			boolean ret = pst.execute();
+			con.commit();
+			return ret;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		} finally {
+			closeQuietly(pst, con);
+		}
+	}
+	
+	public boolean deleteProduct(int id) {
+		Connection con = null;
+		PreparedStatement pst = null;
+		try {
+			con = getConnection();
+			con.setAutoCommit(false); 
+			String sql = "DELETE FROM Product WHERE Product_Id = ?";
+			pst = con.prepareStatement(sql);
+			pst.setInt(1, id);
+			return pst.execute();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		} finally {
+			closeQuietly(pst, con);
+		}
+	}
+	
+	public boolean updateProduct(Product product) {
+		Connection con = null;
+		PreparedStatement pst = null;
+		try {
+			con = getConnection();
+			con.setAutoCommit(false); 
+			String sql = "DELETE FROM Product WHERE Product_Id = ?";
+			pst = con.prepareStatement(sql);
+			//pst.setInt(1, id);
+			return pst.execute();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		} finally {
+			closeQuietly(pst, con);
+		}
+	}
 }
+

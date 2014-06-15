@@ -1,7 +1,6 @@
 package shopDAO;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -14,6 +13,7 @@ public class AbstractDAO {
 	AbstractDAO(DataSource ds) {
 		this.ds = ds;
 	}
+
 
 	public Connection getConnection() throws SQLException,
 			ClassNotFoundException {
