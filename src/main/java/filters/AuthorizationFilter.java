@@ -5,10 +5,10 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
@@ -28,7 +28,7 @@ public class AuthorizationFilter implements Filter {
         while (scanner.hasNextLine()) {
             allowedAddresses.add(scanner.nextLine().trim());
         }
-        System.out.println(allowedAddresses.toString());
+        scanner.close();
     }
 
     public void doFilter(ServletRequest req, ServletResponse resp, FilterChain fc) throws IOException, ServletException {
@@ -41,11 +41,10 @@ public class AuthorizationFilter implements Filter {
         } else {
             String path = httpReq.getServletPath();
             System.out.println(path);
-            System.out.println(allowedAddresses.contains(path));
             if (allowedAddresses.contains(path)) {
                 fc.doFilter(req, resp);
             } else {
-            	httpRes.sendError(401, "Musisz by� zalogowany by wej�� na stron� g��wn�!");
+            	httpRes.sendError(401, "Musisz byc zalogowany by wejsc na strone!");
             }
         }
     }

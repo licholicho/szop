@@ -3,7 +3,8 @@ package shop;
 
 public class User {
 
-	int id;
+
+	private int id;
 	String name;
 	String surname;
 	String login;

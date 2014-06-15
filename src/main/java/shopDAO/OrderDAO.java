@@ -13,7 +13,6 @@ public class OrderDAO extends AbstractDAO {
 	public void addOrder(Order order, List<Order_Detail> orderDetails) {
 
 		Connection con = null;
-
 		PreparedStatement pst = null;
 		PreparedStatement pst2 = null;
 		try {

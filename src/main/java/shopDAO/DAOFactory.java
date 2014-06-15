@@ -1,19 +1,18 @@
 package shopDAO;
 
-public class DAOFactory {
-	private static DAOFactory factory;
+public class DAOFactory implements IDAOFactory{
+//	private static DAOFactory factory;
+//	
+//	private DAOFactory() {}
+//	
+//	public static DAOFactory getInstance() {
+//		if (factory == null)
+//			factory = new DAOFactory();
+//		return factory;
+//	}
 	
-	private DAOFactory() {}
-	
-	public static DAOFactory getInstance() {
-		if (factory == null) 
-			return new DAOFactory();
-		else 
-			return factory;
-	}
-	
-	public CustomerDAO getCustomerDAO() {
-		return new CustomerDAO();
+	public UserDAO getCustomerDAO() {
+		return new UserDAO();
 	}
 	
 	public OrderDAO getOrderDAO() {
@@ -26,5 +25,9 @@ public class DAOFactory {
 	
 	public CategoryDAO getCategoryDAO() {
 		return new CategoryDAO();
+	}
+	
+	public SupplierDAO getSupplierDAO() {
+		return new SupplierDAO();
 	}
 }

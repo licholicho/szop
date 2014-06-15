@@ -6,4 +6,9 @@
 /search
 /newarrivals
 /styles.css
+/adminstyles.css
 /home
+/admin
+/money
+/browse
+/addproduct

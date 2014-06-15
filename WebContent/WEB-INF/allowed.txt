@@ -1,0 +1,11 @@
+/
+/welcome.jsp
+/register
+/login
+/logout
+/search
+/newarrivals
+/styles.css
+/home
+/shopik/home
+/shopik/home.jsp

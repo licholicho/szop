@@ -14,7 +14,6 @@ public class Product implements Visitable {
 	private double price;
 	private long supplierId;
 	private long categoryId;
-	private static int unitsInStock;
 	private Date dateFrom;
 	private String supplierName;
 	private String productDescription;
@@ -39,9 +38,6 @@ public class Product implements Visitable {
 	}
 	public long getCategoryId() {
 		return categoryId;
-	}
-	public static int getUnitsInStock() {
-		return unitsInStock;
 	}
 	public Date getDateFrom() {
 		return dateFrom;
@@ -98,11 +94,6 @@ public class Product implements Visitable {
 			this.product.dateFrom = dateFrom;
 			return this;
 		}
-		public ProductBuilder unitsInStock(int i) {
-			Product.unitsInStock = i;
-			return this;
-		}
-	
 		public Product build() {
 			return this.product;
 		}

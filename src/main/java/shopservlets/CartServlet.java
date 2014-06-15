@@ -12,8 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import cart.Shipping;
 import cart.ShoppingCart;
-import cart.Visitable;
-import decorators.ZlotyDekorator;
 
 @WebServlet("/cart")
 public class CartServlet extends HttpServlet {
