@@ -14,24 +14,21 @@ import shopiDAO.IProductDAO;
 import cart.ShoppingCart;
 
 @WebServlet("/add")
-public class AddProductServlet  extends HttpServlet {
+public class AddProductServlet extends HttpServlet {
 
+	protected void doPost(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+		ShoppingCart cart = (ShoppingCart) request.getSession().getAttribute(
+				"cart");
+		IProductDAO productdao = (IProductDAO) getServletContext()
+				.getAttribute("productDAO");
+		String ids = request.getParameter("prodId");
+		int id = Integer.valueOf(ids);
+		Product product = productdao.getProduct(id);
+		cart.addProduct(product);
+		RequestDispatcher view = request.getRequestDispatcher("/search");
+		view.forward(request, response);
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		 ShoppingCart cart = (ShoppingCart) request.getSession().getAttribute("cart");
-		 IProductDAO productdao = (IProductDAO) getServletContext().getAttribute("productDAO");
-		 String ids = request.getParameter("prodId");
-		 int id = Integer.valueOf(ids);
-		 Product product = productdao.getProduct(id);
-		 cart.addProduct(product);
-		 RequestDispatcher view = request.getRequestDispatcher("/search");
-	     view.forward(request, response);
-		 
 	}
-	
 
-		
-		 
-		 
-	 }
-
+}

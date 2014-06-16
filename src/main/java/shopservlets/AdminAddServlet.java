@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import shop.Category;
 import shop.Supplier;
-import shopDAO.CategoryDAO;
+import shopiDAO.ICategoryDAO;
 import shopiDAO.IProductDAO;
 import shopiDAO.ISupplierDAO;
 
@@ -36,7 +36,7 @@ public class AdminAddServlet extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 
 		IProductDAO productdao = (IProductDAO) getServletContext().getAttribute("productDAO");
-		CategoryDAO categorydao = (CategoryDAO) getServletContext().getAttribute("categoryDAO");
+		ICategoryDAO categorydao = (ICategoryDAO) getServletContext().getAttribute("categoryDAO");
 		ISupplierDAO supplierdao = (ISupplierDAO) getServletContext().getAttribute("supplierDAO");
 		List<Category> catList = categorydao.viewAllCategories();
 		List<Supplier> supList = supplierdao.viewAllSuppliers();

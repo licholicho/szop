@@ -18,7 +18,7 @@ import cart.Shipping;
 
 @WebListener
 public class DAOListener implements ServletContextListener {
-	private static final boolean cache = false;
+	private static final boolean cache = true;
 	
 	public void contextDestroyed(ServletContextEvent sce) {
 		

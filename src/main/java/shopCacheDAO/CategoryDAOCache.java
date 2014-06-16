@@ -5,10 +5,11 @@ package shopCacheDAO;
 
 import java.util.List;
 
-import javax.sql.DataSource;
-
 import shop.Category;
-import shopDAO.AbstractDAO;
+import shop.Product;
+import shopDAO.CategoryDAO;
+import shopDAO.ProductDAO;
+import shopDAO.UserDAO;
 import shopiDAO.ICategoryDAO;
 
 /**
@@ -17,8 +18,8 @@ import shopiDAO.ICategoryDAO;
  */
 public class CategoryDAOCache extends ADAOCache implements ICategoryDAO {
 
-	private CategoryDAOCache dao;
-	public CategoryDAOCache(CategoryDAOCache dao, CacheConfig cc) {
+	private ICategoryDAO dao;
+	public CategoryDAOCache(ICategoryDAO dao, CacheConfig cc) {
 		super(cc);
 		this.dao = dao;
 	}
@@ -28,8 +29,12 @@ public class CategoryDAOCache extends ADAOCache implements ICategoryDAO {
 	 */
 	@Override
 	public List<Category> viewAllCategories() {
-		
-		return null;
+		List<Category> cats = (List<Category>) c.get(CategoryDAO.TABLE);
+		if (cats == null) {
+			cats = dao.viewAllCategories();
+			c.set(CategoryDAO.TABLE, defaultTime, cats);
+		}
+		return cats;
 	}
 
 	/* (non-Javadoc)
@@ -37,8 +42,10 @@ public class CategoryDAOCache extends ADAOCache implements ICategoryDAO {
 	 */
 	@Override
 	public boolean addCategory(String name) {
-		// TODO Auto-generated method stub
-		return false;
+		boolean added = dao.addCategory(name);
+		if (added)
+			c.delete(UserDAO.TABLE);
+		return added;
 	}
 
 }
