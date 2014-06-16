@@ -6,10 +6,15 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.sql.DataSource;
+
 import shop.Supplier;
 
 public class SupplierDAO extends AbstractDAO {
 
+	public SupplierDAO(DataSource ds) {	
+		super(ds);
+	}
 	public List<Supplier> viewAllSuppliers() {
 		Connection con = null;
 		PreparedStatement pst = null;

@@ -50,6 +50,31 @@ public class Product implements Visitable {
 		return s;
 	}
 	
+	
+	public void setId(int id) {
+		this.id = id;
+	}
+	public void setProductName(String productName) {
+		this.productName = productName;
+	}
+	public void setPrice(double price) {
+		this.price = price;
+	}
+	public void setSupplierId(int supplierId) {
+		this.supplierId = supplierId;
+	}
+	public void setCategoryId(int categoryId) {
+		this.categoryId = categoryId;
+	}
+	public void setDateFrom(Date dateFrom) {
+		this.dateFrom = dateFrom;
+	}
+	public void setSupplierName(String supplierName) {
+		this.supplierName = supplierName;
+	}
+	public void setProductDescription(String productDescription) {
+		this.productDescription = productDescription;
+	}
 	public void acceptVisitor(AuxVisitor visitor, int sign) {
 		visitor.visit(this, sign);
 	}

@@ -38,6 +38,6 @@ public class DAOCacheFactory implements IDAOFactory {
 
 	@Override
 	public SupplierDAO getSupplierDAO() {
-		return new SupplierDAO();
+		return new SupplierDAO(ds);
 	}
 }

@@ -51,7 +51,12 @@ public class UpdateProductServlet extends HttpServlet {
 		String supplier = request.getParameter("prodsupplier");
 		String cat = request.getParameter("prodcat");
 		String price = request.getParameter("prodprice");
-		
+		prod.setPrice(Double.parseDouble(price));
+		prod.setProductName(name);
+		prod.setProductDescription(desc);
+		prod.setCategoryId(Integer.parseInt(cat));
+		prod.setSupplierId(Integer.parseInt(supplier));
+		productdao.updateProduct(prod);
 		Message m = new Message();
 		m.setLoginMessage("");
 		if (name != null) {

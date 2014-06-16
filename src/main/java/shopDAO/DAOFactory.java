@@ -42,6 +42,6 @@ public class DAOFactory implements IDAOFactory{
 	}
 	
 	public SupplierDAO getSupplierDAO() {
-		return new SupplierDAO();
+		return new SupplierDAO(ds);
 	}
 }
