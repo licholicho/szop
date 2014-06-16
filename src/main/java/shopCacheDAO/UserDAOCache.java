@@ -69,10 +69,6 @@ public class UserDAOCache extends ADAOCache implements IUserDAO {
 		return isUserWithLogin(user.getLogin());
 	}
 
-	@Override
-	public boolean isAdmin(User user) {
-		return false;
-	}
 	
 	@Override
 	public User getUser(User user) {

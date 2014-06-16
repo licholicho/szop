@@ -16,8 +16,8 @@ import shop.Category;
 import shop.Product;
 import shop.Supplier;
 import shopDAO.CategoryDAO;
-import shopDAO.IProductDAO;
-import shopDAO.ISupplierDAO;
+import shopiDAO.IProductDAO;
+import shopiDAO.ISupplierDAO;
 
 @WebServlet("/update")
 public class UpdateProductServlet extends HttpServlet {

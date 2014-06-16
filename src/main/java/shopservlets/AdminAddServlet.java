@@ -15,8 +15,8 @@ import javax.servlet.http.HttpServletResponse;
 import shop.Category;
 import shop.Supplier;
 import shopDAO.CategoryDAO;
-import shopDAO.IProductDAO;
-import shopDAO.ISupplierDAO;
+import shopiDAO.IProductDAO;
+import shopiDAO.ISupplierDAO;
 
 @WebServlet("/addproduct")
 public class AdminAddServlet extends HttpServlet {

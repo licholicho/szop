@@ -9,7 +9,10 @@ import javax.sql.DataSource;
 
 import shopCacheDAO.CacheConfig;
 import shopCacheDAO.DAOCacheFactory;
+import shopiDAO.ICategoryDAO;
 import shopiDAO.IDAOFactory;
+import shopiDAO.IProductDAO;
+import shopiDAO.ISupplierDAO;
 import shopiDAO.IUserDAO;
 import cart.Shipping;
 

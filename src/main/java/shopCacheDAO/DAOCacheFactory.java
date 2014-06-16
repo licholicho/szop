@@ -3,15 +3,15 @@ package shopCacheDAO;
 import javax.sql.DataSource;
 
 import shopDAO.CategoryDAO;
-import shopDAO.ICategoryDAO;
-import shopDAO.IOrderDAO;
-import shopDAO.IProductDAO;
-import shopDAO.ISupplierDAO;
 import shopDAO.OrderDAO;
 import shopDAO.ProductDAO;
 import shopDAO.SupplierDAO;
 import shopDAO.UserDAO;
+import shopiDAO.ICategoryDAO;
 import shopiDAO.IDAOFactory;
+import shopiDAO.IOrderDAO;
+import shopiDAO.IProductDAO;
+import shopiDAO.ISupplierDAO;
 import shopiDAO.IUserDAO;
 
 public class DAOCacheFactory implements IDAOFactory {

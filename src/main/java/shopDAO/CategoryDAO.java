@@ -9,6 +9,7 @@ import java.util.List;
 import javax.sql.DataSource;
 
 import shop.Category;
+import shopiDAO.ICategoryDAO;
 
 public class CategoryDAO extends AbstractDAO implements ICategoryDAO  {
 	
