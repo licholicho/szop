@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import shop.Product;
-import shopDAO.ProductDAO;
+import shopDAO.IProductDAO;
 import cart.ShoppingCart;
 
 @WebServlet("/add")
@@ -19,7 +19,7 @@ public class AddProductServlet  extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		 ShoppingCart cart = (ShoppingCart) request.getSession().getAttribute("cart");
-		 ProductDAO productdao = (ProductDAO) getServletContext().getAttribute("productDAO");
+		 IProductDAO productdao = (IProductDAO) getServletContext().getAttribute("productDAO");
 		 String ids = request.getParameter("prodId");
 		 int id = Integer.valueOf(ids);
 		 Product product = productdao.getProduct(id);

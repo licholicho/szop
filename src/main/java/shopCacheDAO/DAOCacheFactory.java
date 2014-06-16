@@ -3,12 +3,16 @@ package shopCacheDAO;
 import javax.sql.DataSource;
 
 import shopDAO.CategoryDAO;
-import shopDAO.IDAOFactory;
-import shopDAO.IUserDAO;
+import shopDAO.ICategoryDAO;
+import shopDAO.IOrderDAO;
+import shopDAO.IProductDAO;
+import shopDAO.ISupplierDAO;
 import shopDAO.OrderDAO;
 import shopDAO.ProductDAO;
 import shopDAO.SupplierDAO;
 import shopDAO.UserDAO;
+import shopiDAO.IDAOFactory;
+import shopiDAO.IUserDAO;
 
 public class DAOCacheFactory implements IDAOFactory {
 	
@@ -24,20 +28,20 @@ public class DAOCacheFactory implements IDAOFactory {
 		return new UserDAOCache(new UserDAO(ds), cacheConfig);
 	}
 	
-	public OrderDAO getOrderDAO() {
+	public IOrderDAO getOrderDAO() {
 		return new OrderDAO(ds);
 	}
 	
-	public ProductDAO getProductDAO() {
+	public IProductDAO getProductDAO() {
 		return new ProductDAO(ds);
 	}
 	
-	public CategoryDAO getCategoryDAO() {
+	public ICategoryDAO getCategoryDAO() {
 		return new CategoryDAO(ds);
 	}
 
 	@Override
-	public SupplierDAO getSupplierDAO() {
+	public ISupplierDAO getSupplierDAO() {
 		return new SupplierDAO(ds);
 	}
 }

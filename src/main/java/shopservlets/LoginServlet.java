@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import shop.User;
-import shopDAO.IUserDAO;
+import shopiDAO.IUserDAO;
 import cart.ShoppingCart;
 import decorators.ZlotyDekorator;
 

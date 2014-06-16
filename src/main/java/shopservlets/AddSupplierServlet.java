@@ -9,13 +9,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import shopDAO.SupplierDAO;
+import shopDAO.ISupplierDAO;
 
 @WebServlet("/addsupplier")
 public class AddSupplierServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		 SupplierDAO supplierdao = (SupplierDAO) getServletContext().getAttribute("SupplierDAO");
+		 ISupplierDAO supplierdao = (ISupplierDAO) getServletContext().getAttribute("SupplierDAO");
 		 String name = request.getParameter("newsup");
 		 supplierdao.addSupplier(name);
 		 RequestDispatcher view = request.getRequestDispatcher("/addproduct");

@@ -13,12 +13,16 @@ import javax.sql.DataSource;
 
 import shop.Product;
 
-public class ProductDAO extends AbstractDAO {
+public class ProductDAO extends AbstractDAO implements IProductDAO {
 
 	public ProductDAO(DataSource ds) {
 		super(ds);
 	}
 
+	/* (non-Javadoc)
+	 * @see shopDAO.IProductDAO#viewProductsByCategory(java.lang.String, java.lang.String)
+	 */
+	@Override
 	public List<Product> viewProductsByCategory(String productName,
 			String category) {
 		Connection con = null;
@@ -58,6 +62,10 @@ public class ProductDAO extends AbstractDAO {
 
 	}
 
+	/* (non-Javadoc)
+	 * @see shopDAO.IProductDAO#viewProductsByCategory(java.lang.String, java.lang.String, int, int)
+	 */
+	@Override
 	public List<Product> viewProductsByCategory(String productName,
 			String category, int offset, int noOfRecords) {
 		Connection con = null;
@@ -101,6 +109,10 @@ public class ProductDAO extends AbstractDAO {
 
 	}
 
+	/* (non-Javadoc)
+	 * @see shopDAO.IProductDAO#viewAllProducts(int, int)
+	 */
+	@Override
 	public List<Product> viewAllProducts(int offset, int noOfRecords) {
 		Connection con = null;
 		PreparedStatement pst = null;
@@ -130,6 +142,10 @@ public class ProductDAO extends AbstractDAO {
 
 	}
 
+	/* (non-Javadoc)
+	 * @see shopDAO.IProductDAO#getNoOfRecords()
+	 */
+	@Override
 	public int getNoOfRecords() {
 		Connection con = null;
 		PreparedStatement pst = null;
@@ -152,6 +168,10 @@ public class ProductDAO extends AbstractDAO {
 
 	}
 
+	/* (non-Javadoc)
+	 * @see shopDAO.IProductDAO#getProduct(int)
+	 */
+	@Override
 	public Product getProduct(int id) {
 		Connection c = null;
 		PreparedStatement s = null;
@@ -176,6 +196,10 @@ public class ProductDAO extends AbstractDAO {
 
 	}
 
+	/* (non-Javadoc)
+	 * @see shopDAO.IProductDAO#addProduct(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)
+	 */
+	@Override
 	public boolean addProduct(String name, String desc, String cat,
 			String supplier, String price) {
 		Connection con = null;
@@ -202,6 +226,10 @@ public class ProductDAO extends AbstractDAO {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see shopDAO.IProductDAO#deleteProduct(int)
+	 */
+	@Override
 	public boolean deleteProduct(int id) {
 		Connection con = null;
 		PreparedStatement pst = null;
@@ -220,6 +248,10 @@ public class ProductDAO extends AbstractDAO {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see shopDAO.IProductDAO#updateProduct(shop.Product)
+	 */
+	@Override
 	public boolean updateProduct(Product product) {
 		Connection con = null;
 		PreparedStatement pst = null;

@@ -9,6 +9,8 @@ import javax.sql.DataSource;
 
 import shopCacheDAO.CacheConfig;
 import shopCacheDAO.DAOCacheFactory;
+import shopiDAO.IDAOFactory;
+import shopiDAO.IUserDAO;
 import cart.Shipping;
 
 @WebListener
@@ -36,9 +38,9 @@ public class DAOListener implements ServletContextListener {
 
 		IDAOFactory factory = cache ? new DAOCacheFactory(ds, cacheConfig) : new DAOFactory(ds);
 		IUserDAO customerdao = factory.getCustomerDAO();
-		ProductDAO productdao = factory.getProductDAO();
-		CategoryDAO categorydao = factory.getCategoryDAO();
-		SupplierDAO supplierdao = factory.getSupplierDAO();
+		IProductDAO productdao = factory.getProductDAO();
+		ICategoryDAO categorydao = factory.getCategoryDAO();
+		ISupplierDAO supplierdao = factory.getSupplierDAO();
 		sce.getServletContext().setAttribute("customerDAO", customerdao);
 		sce.getServletContext().setAttribute("productDAO", productdao);
 		sce.getServletContext().setAttribute("categoryDAO", categorydao);

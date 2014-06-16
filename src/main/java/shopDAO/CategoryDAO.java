@@ -10,12 +10,16 @@ import javax.sql.DataSource;
 
 import shop.Category;
 
-public class CategoryDAO extends AbstractDAO {
+public class CategoryDAO extends AbstractDAO implements ICategoryDAO  {
 	
 	public CategoryDAO(DataSource ds) {
 		super(ds);
 	}
 
+	/* (non-Javadoc)
+	 * @see shopDAO.ICategoryDAO#viewAllCategories()
+	 */
+	@Override
 	public List<Category> viewAllCategories() {
 		Connection con = null;
 		PreparedStatement pst = null;
@@ -38,9 +42,12 @@ public class CategoryDAO extends AbstractDAO {
 		} finally {
 			closeQuietly(pst, con);
 		}
-
 	}
 	
+	/* (non-Javadoc)
+	 * @see shopDAO.ICategoryDAO#addCategory(java.lang.String)
+	 */
+	@Override
 	public boolean addCategory(String name) {
 		Connection con = null;
 		PreparedStatement pst = null;

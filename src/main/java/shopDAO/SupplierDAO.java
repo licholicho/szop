@@ -10,11 +10,15 @@ import javax.sql.DataSource;
 
 import shop.Supplier;
 
-public class SupplierDAO extends AbstractDAO {
+public class SupplierDAO extends AbstractDAO implements ISupplierDAO {
 
 	public SupplierDAO(DataSource ds) {	
 		super(ds);
 	}
+	/* (non-Javadoc)
+	 * @see shopDAO.ISupplierDAO#viewAllSuppliers()
+	 */
+	@Override
 	public List<Supplier> viewAllSuppliers() {
 		Connection con = null;
 		PreparedStatement pst = null;
@@ -40,6 +44,10 @@ public class SupplierDAO extends AbstractDAO {
 
 	}
 	
+	/* (non-Javadoc)
+	 * @see shopDAO.ISupplierDAO#addSupplier(java.lang.String)
+	 */
+	@Override
 	public boolean addSupplier(String name) {
 		Connection con = null;
 		PreparedStatement pst = null;

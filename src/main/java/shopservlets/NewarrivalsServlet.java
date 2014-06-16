@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import shop.Product;
-import shopDAO.ProductDAO;
+import shopDAO.IProductDAO;
 
 @WebServlet("/newarrivals")
 public class NewarrivalsServlet extends HttpServlet  {
@@ -31,7 +31,7 @@ public class NewarrivalsServlet extends HttpServlet  {
 	        }
 	        
 	        int recordsPerPage = 5;
-		    ProductDAO dao = (ProductDAO) getServletContext().getAttribute("productDAO");
+		    IProductDAO dao = (IProductDAO) getServletContext().getAttribute("productDAO");
 			
 	        List<Product> list = dao.viewAllProducts((page - 1) * recordsPerPage,
 	                recordsPerPage);

@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import shop.Category;
 import shop.Product;
 import shopDAO.CategoryDAO;
-import shopDAO.ProductDAO;
+import shopDAO.IProductDAO;
 
 @WebServlet("/search")
 public class SearchServlet extends HttpServlet {
@@ -39,7 +39,7 @@ public class SearchServlet extends HttpServlet {
 	        
 	        int recordsPerPage = 5;
 	        
-	        ProductDAO productdao = (ProductDAO) getServletContext().getAttribute("productDAO");
+	        IProductDAO productdao = (IProductDAO) getServletContext().getAttribute("productDAO");
 	        CategoryDAO categorydao = (CategoryDAO) getServletContext().getAttribute("categoryDAO");
 	        List<Product> prodList = productdao.viewProductsByCategory(productToSearch, category, (page - 1) * recordsPerPage, recordsPerPage);
 	        List<Product> all = productdao.viewAllProducts((page - 1) * recordsPerPage, recordsPerPage);

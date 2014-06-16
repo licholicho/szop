@@ -12,6 +12,7 @@ import javax.sql.DataSource;
 import org.apache.log4j.Logger;
 
 import shop.User;
+import shopiDAO.IUserDAO;
 
 public class UserDAO extends AbstractDAO implements IUserDAO {
 	public static final String ID = "User_Id";

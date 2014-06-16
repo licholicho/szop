@@ -1,41 +1,17 @@
 package shopCacheDAO;
 
-import java.io.IOException;
-import java.net.InetSocketAddress;
 import java.util.List;
 
-import net.spy.memcached.MemcachedClient;
 import shop.User;
-import shopDAO.IUserDAO;
 import shopDAO.UserDAO;
+import shopiDAO.IUserDAO;
 
-public class UserDAOCache extends DAOCache implements IUserDAO {
-	private static final boolean dev = true;
+public class UserDAOCache extends ADAOCache implements IUserDAO {
 
 	private UserDAO dao;
-	private int portNum = 11211;
-	private MemcachedClient c = null;
-	private final static String devDonnection = "localhost";
-	private final static String prodConnection = "memcached-env-8290494.jelastic.dogado.eu";
-	private int defaultTime = 3600;
-
 	public UserDAOCache(UserDAO dao, CacheConfig cacheConfig) {
+		super(cacheConfig);
 		this.dao = dao;
-		// try {
-		// if(dev)
-		// c = new MemcachedClient(new InetSocketAddress(devDonnection,
-		// portNum));
-		// else
-		// c = new MemcachedClient(new InetSocketAddress(prodConnection,
-		// portNum));
-		// } catch (Exception e) {
-		// e.printStackTrace();
-		// }
-		try {
-			c = new MemcachedClient(new InetSocketAddress(cacheConfig.getConnection(), cacheConfig.getPort()));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 	}
 
 	/**

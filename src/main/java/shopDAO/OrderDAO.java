@@ -10,12 +10,16 @@ import javax.sql.DataSource;
 import shop.Order;
 import shop.Order_Detail;
 
-public class OrderDAO extends AbstractDAO {
+public class OrderDAO extends AbstractDAO implements IOrderDAO {
 	
 	public OrderDAO(DataSource ds) {
 		super(ds);
 	}
 
+	/* (non-Javadoc)
+	 * @see shopDAO.IOrderDAO#addOrder(shop.Order, java.util.List)
+	 */
+	@Override
 	public void addOrder(Order order, List<Order_Detail> orderDetails) {
 
 		Connection con = null;

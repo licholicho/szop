@@ -2,7 +2,7 @@ package shopDAO;
 
 import javax.sql.DataSource;
 
-import shopCacheDAO.DAOCache;
+import shopiDAO.IDAOFactory;
 
 public class DAOFactory implements IDAOFactory{
 //	private static DAOFactory factory;
@@ -29,19 +29,19 @@ public class DAOFactory implements IDAOFactory{
 		return new UserDAO(ds);
 	}
 	
-	public OrderDAO getOrderDAO() {
+	public IOrderDAO getOrderDAO() {
 		return new OrderDAO(ds);
 	}
 	
-	public ProductDAO getProductDAO() {
+	public IProductDAO getProductDAO() {
 		return new ProductDAO(ds);
 	}
 	
-	public CategoryDAO getCategoryDAO() {
+	public ICategoryDAO getCategoryDAO() {
 		return new CategoryDAO(ds);
 	}
 	
-	public SupplierDAO getSupplierDAO() {
+	public ISupplierDAO getSupplierDAO() {
 		return new SupplierDAO(ds);
 	}
 }
