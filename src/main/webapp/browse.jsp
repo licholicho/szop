@@ -15,9 +15,9 @@
 		<div class="header_cont">
 			<nav>
 				<ul id="navlist">
-					<li><a href="./admin">Strona główna</a></li>
-					<li><a href="./addproduct">Dodaj produkt</a></li>
-					<li><a href="./browse">Przegladaj</a></li>
+					<li><a href="admin">Strona główna</a></li>
+					<li><a href="addproduct">Dodaj produkt</a></li>
+					<li><a href="browse">Przegladaj</a></li>
 				</ul>
 			</nav>
 		</div>

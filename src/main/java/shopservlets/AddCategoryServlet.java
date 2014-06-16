@@ -9,13 +9,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import shopDAO.CategoryDAO;
+import shopiDAO.ICategoryDAO;
 
 @WebServlet("/addcat")
 public class AddCategoryServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		 CategoryDAO categorydao = (CategoryDAO) getServletContext().getAttribute("categoryDAO");
+		 ICategoryDAO categorydao = (ICategoryDAO) getServletContext().getAttribute("categoryDAO");
 		 String name = request.getParameter("newcat");
 		 categorydao.addCategory(name);
 		 RequestDispatcher view = request.getRequestDispatcher("/addproduct");

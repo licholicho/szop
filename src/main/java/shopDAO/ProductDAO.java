@@ -15,7 +15,9 @@ import shop.Product;
 import shopiDAO.IProductDAO;
 
 public class ProductDAO extends AbstractDAO implements IProductDAO {
-
+	public static final String ID = "Product_Id";
+	public static final String TABLE = "Product";
+	
 	public ProductDAO(DataSource ds) {
 		super(ds);
 	}
@@ -82,14 +84,11 @@ public class ProductDAO extends AbstractDAO implements IProductDAO {
 			sql += " limit ?, ?";
 			pst = con.prepareStatement(sql);
 			int k = 1;
-			pst.setString(k, category);
-			k++;
+			pst.setString(k++, category);
 			if ((productName != null) && (productName != "")) {
-				pst.setString(k, productName);
-				k++;
+				pst.setString(k++, productName);
 			}
-			pst.setInt(k, offset);
-			k++;
+			pst.setInt(k++, offset);
 			pst.setInt(k, noOfRecords);
 			ResultSet rs = pst.executeQuery();
 			while (rs.next()) {
@@ -236,7 +235,6 @@ public class ProductDAO extends AbstractDAO implements IProductDAO {
 		PreparedStatement pst = null;
 		try {
 			con = getConnection();
-			con.setAutoCommit(false);
 			String sql = "DELETE FROM Product WHERE Product_Id = ?";
 			pst = con.prepareStatement(sql);
 			pst.setInt(1, id);
@@ -268,7 +266,9 @@ public class ProductDAO extends AbstractDAO implements IProductDAO {
 			pst.setInt(4, product.getCategoryId());
 			pst.setInt(5, product.getSupplierId());
 			pst.setInt(6, product.getId());
-			return pst.execute();
+			boolean ret = pst.execute();
+			con.commit();
+			return ret;
 		} catch (Exception e) {
 			e.printStackTrace();
 			return false;

@@ -12,6 +12,8 @@ import shop.Category;
 import shopiDAO.ICategoryDAO;
 
 public class CategoryDAO extends AbstractDAO implements ICategoryDAO  {
+	public static final String TABLE = "Category";
+	public static final String ID = "Category_Id";
 	
 	public CategoryDAO(DataSource ds) {
 		super(ds);

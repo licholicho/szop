@@ -33,11 +33,11 @@ public class DAOCacheFactory implements IDAOFactory {
 	}
 	
 	public IProductDAO getProductDAO() {
-		return new ProductDAO(ds);
+		return new ProductDAOCache(new ProductDAO(ds), cacheConfig);
 	}
 	
 	public ICategoryDAO getCategoryDAO() {
-		return new CategoryDAO(ds);
+		return new CategoryDAOCache(new CategoryDAO(ds), cacheConfig);
 	}
 
 	@Override
