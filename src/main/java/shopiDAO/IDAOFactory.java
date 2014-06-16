@@ -1,9 +1,5 @@
 package shopiDAO;
 
-import shopDAO.ICategoryDAO;
-import shopDAO.IOrderDAO;
-import shopDAO.IProductDAO;
-import shopDAO.ISupplierDAO;
 
 public interface IDAOFactory {
 	public IUserDAO getCustomerDAO();

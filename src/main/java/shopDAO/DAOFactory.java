@@ -2,7 +2,11 @@ package shopDAO;
 
 import javax.sql.DataSource;
 
+import shopiDAO.ICategoryDAO;
 import shopiDAO.IDAOFactory;
+import shopiDAO.IOrderDAO;
+import shopiDAO.IProductDAO;
+import shopiDAO.ISupplierDAO;
 
 public class DAOFactory implements IDAOFactory{
 //	private static DAOFactory factory;

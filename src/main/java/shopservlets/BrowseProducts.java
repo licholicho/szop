@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import shop.Category;
 import shop.Product;
 import shopDAO.CategoryDAO;
-import shopDAO.IProductDAO;
+import shopiDAO.IProductDAO;
 
 @WebServlet("/browse")
 public class BrowseProducts extends HttpServlet {

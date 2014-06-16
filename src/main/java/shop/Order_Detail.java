@@ -1,6 +1,8 @@
 package shop;
 
-public class Order_Detail {
+import java.io.Serializable;
+
+public class Order_Detail  implements Serializable {
 
 	private int orderId;
 	private int productId;

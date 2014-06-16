@@ -12,6 +12,7 @@ import java.util.List;
 import javax.sql.DataSource;
 
 import shop.Product;
+import shopiDAO.IProductDAO;
 
 public class ProductDAO extends AbstractDAO implements IProductDAO {
 

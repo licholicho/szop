@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import shop.Product;
-import shopDAO.IProductDAO;
+import shopiDAO.IProductDAO;
 
 @WebServlet("/newarrivals")
 public class NewarrivalsServlet extends HttpServlet  {

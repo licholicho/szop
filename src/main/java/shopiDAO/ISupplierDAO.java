@@ -1,4 +1,4 @@
-package shopDAO;
+package shopiDAO;
 
 import java.util.List;
 

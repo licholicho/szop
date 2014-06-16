@@ -9,6 +9,7 @@ import javax.sql.DataSource;
 
 import shop.Order;
 import shop.Order_Detail;
+import shopiDAO.IOrderDAO;
 
 public class OrderDAO extends AbstractDAO implements IOrderDAO {
 	

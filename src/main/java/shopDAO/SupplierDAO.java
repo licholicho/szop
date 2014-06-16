@@ -9,6 +9,7 @@ import java.util.List;
 import javax.sql.DataSource;
 
 import shop.Supplier;
+import shopiDAO.ISupplierDAO;
 
 public class SupplierDAO extends AbstractDAO implements ISupplierDAO {
 

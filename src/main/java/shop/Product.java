@@ -1,5 +1,6 @@
 package shop;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import cart.AuxVisitor;
@@ -7,7 +8,7 @@ import cart.Visitable;
 import decorators.ZlotyDekorator;
 
 
-public class Product implements Visitable {
+public class Product implements Visitable, Serializable {
 
 	private int id;
 	private String productName;
