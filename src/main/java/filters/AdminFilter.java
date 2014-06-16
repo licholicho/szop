@@ -18,15 +18,15 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 @WebFilter(urlPatterns = {"/*"})
-public class AuthorizationFilter implements Filter {
+public class AdminFilter implements Filter {
 
-    private List<String> allowedAddresses = new ArrayList<String>();
+    private List<String> adminAllowedAddresses = new ArrayList<String>();
     
     public void init(FilterConfig fc) throws ServletException {
-        InputStream is = fc.getServletContext().getResourceAsStream("/WEB-INF/allowed.txt");
+        InputStream is = fc.getServletContext().getResourceAsStream("/WEB-INF/adminAllowed.txt");
         Scanner scanner = new Scanner(is);
         while (scanner.hasNextLine()) {
-            allowedAddresses.add(scanner.nextLine().trim());
+            adminAllowedAddresses.add(scanner.nextLine().trim());
         }
         scanner.close();
     }
@@ -37,20 +37,18 @@ public class AuthorizationFilter implements Filter {
         HttpSession session = httpReq.getSession();
         String login = (String) session.getAttribute("user");
         String isAdmin = (String) session.getAttribute("isAdmin");
-        if (isAdmin == null) {
-        if (login != null) {
-            fc.doFilter(req, resp);
-        } else {
+        if (isAdmin != null) {
             String path = httpReq.getServletPath();
             System.out.println(path);
-            if (allowedAddresses.contains(path)) {
+            if (adminAllowedAddresses.contains(path)) {
                 fc.doFilter(req, resp);
             } else {
-            	httpRes.sendError(401, "Musisz byc zalogowany by wejsc na strone!");
+            	httpRes.sendError(401, "Brak dostepu!");
             }
         }
     }
-    }
+
+
     public void destroy() {
     }
 }

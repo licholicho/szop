@@ -1,0 +1,5 @@
+/update
+/browse
+/addproduct
+/newcat
+/newsupplier

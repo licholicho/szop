@@ -152,5 +152,26 @@ public class UserDAO extends AbstractDAO implements IUserDAO {
 		}
 	}
 
+	public boolean isAdmin(User user) {
+		Connection con = null;
+		PreparedStatement pst = null;
+		try {
+			con = getConnection();
+			String sql = "SELECT Admin FROM User where User_Id = ?";
+			pst = con.prepareStatement(sql);
+			pst.setInt(1, user.getId());
+			ResultSet rs = pst.executeQuery();
+			int isAdmin = 0;
+			while (rs.next()) {
+				isAdmin = rs.getInt("Admin");
+			}
+			return (isAdmin == 1) ? true : false;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		} finally {
+			closeQuietly(pst, con);
+		}
+	}
 	
 }

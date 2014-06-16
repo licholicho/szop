@@ -24,7 +24,7 @@ public class Product implements Visitable {
 	public String getSupplierName() {
 		return supplierName;
 	}
-	public long getId() {
+	public int getId() {
 		return id;
 	}
 	public String getProductName() {
@@ -33,10 +33,10 @@ public class Product implements Visitable {
 	public double getPrice() {
 		return price;
 	}
-	public long getSupplierId() {
+	public int getSupplierId() {
 		return supplierId;
 	}
-	public long getCategoryId() {
+	public int getCategoryId() {
 		return categoryId;
 	}
 	public Date getDateFrom() {

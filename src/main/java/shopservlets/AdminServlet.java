@@ -61,7 +61,7 @@ public class AdminServlet extends HttpServlet {
 	        
 	        IUserDAO dao = (IUserDAO) getServletContext().getAttribute("customerDAO");
 
-	        if (!dao.isUser(new User(login, Encryption.md5(pass)))) {
+	        if (!dao.isAdmin(new User(login, Encryption.md5(pass)))) {
 	            loginMessage = "Zle dane logowania";
 	            setLoginMessage(loginMessage);
 	            auxMessage.setLoginMessage(loginMessage);
@@ -71,11 +71,10 @@ public class AdminServlet extends HttpServlet {
 
 	       if (!isError) {
 	            request.getSession().setAttribute("user", login);
-	        	ShoppingCart cart = new ShoppingCart();
-	        	request.getSession().setAttribute("cart", cart);
+	            request.getSession().setAttribute("isadmin", 1);
 	        	ZlotyDekorator dekorator = new ZlotyDekorator();
 	    		request.getSession().setAttribute("dekorator", dekorator);
-	            RequestDispatcher dis = request.getRequestDispatcher("/addproduct");
+	            RequestDispatcher dis = request.getRequestDispatcher("/admin");
 	            dis.forward(request, response);
 	       }     else {
 	            auxMessage.setLogin(login);

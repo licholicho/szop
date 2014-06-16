@@ -227,9 +227,15 @@ public class ProductDAO extends AbstractDAO {
 		try {
 			con = getConnection();
 			con.setAutoCommit(false); 
-			String sql = "DELETE FROM Product WHERE Product_Id = ?";
+			String sql = "UPDATE Product SET Product_Name = ?, Product_Descpription = ?, Unit_Price = ?, "
+					+"Category_Id = ?, Supplier_Id = ? WHERE Product_Id = ?";
 			pst = con.prepareStatement(sql);
-			//pst.setInt(1, id);
+			pst.setString(1, product.getProductName());
+			pst.setString(2, product.getProductDescription());
+			pst.setDouble(3, product.getPrice());
+			pst.setInt(4, product.getCategoryId());
+			pst.setInt(5, product.getSupplierId());
+			pst.setInt(6, product.getId());
 			return pst.execute();
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -37,9 +37,9 @@
 							<input id="element_2" name="prodprice" type="text"
 								maxlength="255" />
 						</div></li>
-					<li id="li_3"><label for="element_3">Opis </label>
+					<li id="li_3"><label for="element_3" >Opis </label>
 						<div>
-							<textarea id="element_3" name="proddesc"></textarea>
+							<textarea id="element_3" name="proddesc" ></textarea>
 						</div></li>
 					<li id="li_4"><label for="element_4">Producent </label>
 						<div>
