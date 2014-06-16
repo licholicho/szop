@@ -97,5 +97,11 @@ public class UserDAOCache extends DAOCache implements IUserDAO {
 	public boolean isAdmin(User user) {
 		return false;
 	}
+	
+	@Override
+	public User getUser(User user) {
+		return dao.getUser(user);
+	}
+	
 
 }

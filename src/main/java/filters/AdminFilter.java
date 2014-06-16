@@ -17,38 +17,41 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebFilter(urlPatterns = {"/*"})
+import shop.User;
+
+@WebFilter(urlPatterns = { "/*" })
 public class AdminFilter implements Filter {
 
-    private List<String> adminAllowedAddresses = new ArrayList<String>();
-    
-    public void init(FilterConfig fc) throws ServletException {
-        InputStream is = fc.getServletContext().getResourceAsStream("/WEB-INF/adminAllowed.txt");
-        Scanner scanner = new Scanner(is);
-        while (scanner.hasNextLine()) {
-            adminAllowedAddresses.add(scanner.nextLine().trim());
-        }
-        scanner.close();
-    }
+	private List<String> adminAllowedAddresses = new ArrayList<String>();
 
-    public void doFilter(ServletRequest req, ServletResponse resp, FilterChain fc) throws IOException, ServletException {
-    	HttpServletRequest httpReq = (HttpServletRequest) req;
-        HttpServletResponse httpRes = (HttpServletResponse) resp;
-        HttpSession session = httpReq.getSession();
-        String login = (String) session.getAttribute("user");
-        String isAdmin = (String) session.getAttribute("isAdmin");
-        if (isAdmin != null) {
-            String path = httpReq.getServletPath();
-            System.out.println(path);
-            if (adminAllowedAddresses.contains(path)) {
-                fc.doFilter(req, resp);
-            } else {
-            	httpRes.sendError(401, "Brak dostepu!");
-            }
-        }
-    }
+	public void init(FilterConfig fc) throws ServletException {
+		InputStream is = fc.getServletContext().getResourceAsStream(
+				"/WEB-INF/adminAllowed.txt");
+		Scanner scanner = new Scanner(is);
+		while (scanner.hasNextLine()) {
+			adminAllowedAddresses.add(scanner.nextLine().trim());
+		}
+		scanner.close();
+	}
 
+	public void doFilter(ServletRequest req, ServletResponse resp,
+			FilterChain fc) throws IOException, ServletException {
+		HttpServletRequest httpReq = (HttpServletRequest) req;
+		HttpServletResponse httpRes = (HttpServletResponse) resp;
+		HttpSession session = httpReq.getSession();
 
-    public void destroy() {
-    }
+		String path = httpReq.getServletPath();
+		if (adminAllowedAddresses.contains(path)) {
+			User cUser = (User) session.getAttribute("currentUser");
+			if (cUser != null && !cUser.isAdmin()) {
+				httpRes.sendError(401,
+						"Musisz byc zalogowany by wejsc na admina!");
+				return;
+			}
+		}
+		fc.doFilter(req, resp);
+	}
+
+	public void destroy() {
+	}
 }

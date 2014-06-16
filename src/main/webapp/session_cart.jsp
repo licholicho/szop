@@ -1,6 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<c:if test="${sessionScope.user != null}">
-	<form name="myform" action="/add" method="POST">
+<c:if test="${sessionScope.currentUser != null}">
+	<form name="myform" action="add" method="POST">
 		<input type="hidden" name="prodId" value="${prod.getId()}"> <input
 			type="submit" value="Dodaj do koszyka" />
 	</form>

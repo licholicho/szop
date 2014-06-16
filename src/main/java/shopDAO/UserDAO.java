@@ -18,7 +18,7 @@ public class UserDAO extends AbstractDAO implements IUserDAO {
 	public static final String TABLE = "User";
 	public static final String NICK = "User_Nick";
 	public static final String PASS = "User_Pass";
-	
+	public static final String ADMIN = "Admin";
 	public UserDAO(DataSource ds) {
 		super(ds);
 	}
@@ -28,7 +28,8 @@ public class UserDAO extends AbstractDAO implements IUserDAO {
 			String firstName = r.getString(NICK);
 			String lastName = r.getString(PASS);
 			int id = r.getInt(ID);
-			User u = new User(firstName, lastName, id);
+			boolean admin = r.getInt(ADMIN) == 1;
+			User u = new User(firstName, lastName, id, admin);
 			return u;
 		}
 		return null;
@@ -91,6 +92,7 @@ public class UserDAO extends AbstractDAO implements IUserDAO {
 		}
 	}
 	
+	@Override
 	public User getUser(User user) {
 		Connection con = null;
 		PreparedStatement pst = null;

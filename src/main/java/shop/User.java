@@ -12,7 +12,7 @@ public class User implements Serializable{
 	String login;
 	String password;
 	String email;
-	
+	private boolean admin;
 	
 	public User(String login, String password) {
 		super();
@@ -20,11 +20,24 @@ public class User implements Serializable{
 		this.password = password;
 	}
 	
+	public boolean isAdmin() {
+		return admin;
+	}
+
+	public void setAdmin(boolean admin) {
+		this.admin = admin;
+	}
+
 	public User(String login, String password, int id) {
 		super();
 		this.login = login;
 		this.password = password;
 		this.id = id;
+	}
+	
+	public User(String login, String password, int id, boolean admin) {
+		this(login, password, id);
+		this.admin = admin;
 	}
 	
 	public int getId() {

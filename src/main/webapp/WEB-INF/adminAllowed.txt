@@ -3,3 +3,4 @@
 /addproduct
 /newcat
 /newsupplier
+/admin

@@ -15,16 +15,16 @@
 		<div class="header_cont">
 			<nav>
 				<ul id="navlist">
-					<li><a href="./home">Strona główna</a></li>
-					<li><a href="./newarrivals">Nowości</a></li>
-					<li><a href="./search">Szukaj</a></li>
+					<li><a href="home">Strona główna</a></li>
+					<li><a href="newarrivals">Nowości</a></li>
+					<li><a href="search">Szukaj</a></li>
 				</ul>
 			</nav>
 		</div>
 	</header>
 
 
-	<form method="post" action="/search">
+	<form method="post" action="search">
 	Kup kup
 		<table>
 			<tr>

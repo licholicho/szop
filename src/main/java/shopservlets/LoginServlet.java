@@ -61,8 +61,10 @@ public class LoginServlet extends HttpServlet {
 	        }
 	        
 	        IUserDAO dao = (IUserDAO) getServletContext().getAttribute("customerDAO");
-
-	        if (!dao.isUser(new User(login, Encryption.md5(pass)))) {
+	        
+	        User dbUser = dao.getUser(new User(login, Encryption.md5(pass)));
+	        
+	        if (dbUser == null) {
 	            loginMessage = "Zle dane logowania";
 	            setLoginMessage(loginMessage);
 	            auxMessage.setLoginMessage(loginMessage);
@@ -71,7 +73,7 @@ public class LoginServlet extends HttpServlet {
 	        }
 
 	       if (!isError) {
-	            request.getSession().setAttribute("user", login);
+	    	   	request.getSession().setAttribute("currentUser", dbUser);
 	        	ShoppingCart cart = new ShoppingCart();
 	        	request.getSession().setAttribute("cart", cart);
 	        	ZlotyDekorator dekorator = new ZlotyDekorator();
@@ -79,7 +81,7 @@ public class LoginServlet extends HttpServlet {
 	            RequestDispatcher dis = request.getRequestDispatcher("/search");
 	            dis.forward(request, response);
 	       }     else {
-	            auxMessage.setLogin(login);
+	            auxMessage.setLogin(dbUser.getLogin());
 	            RequestDispatcher dis = request.getRequestDispatcher("/welcome.jsp");
 	            dis.forward(request, response);
 	        }

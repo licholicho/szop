@@ -14,30 +14,31 @@ import javax.sql.DataSource;
 import shop.Product;
 
 public class ProductDAO extends AbstractDAO {
-	
+
 	public ProductDAO(DataSource ds) {
 		super(ds);
 	}
 
-	public List<Product> viewProductsByCategory(String productName, String category) {
+	public List<Product> viewProductsByCategory(String productName,
+			String category) {
 		Connection con = null;
 		PreparedStatement pst = null;
 		List<Product> list = new ArrayList<Product>();
 		try {
 			con = getConnection();
-			
+
 			String sql = "select p.Product_Id, p.Product_Name, p.Product_Description from Product p left join Category c "
-					+"on p.Category_Id = c.Category_Id where c.Category_Name = ?";
+					+ "on p.Category_Id = c.Category_Id where c.Category_Name = ?";
 			if (productName != "") {
-					sql +=" and p.Product_Name REGEXP ?";
+				sql += " and p.Product_Name REGEXP ?";
 			}
-			
+
 			pst = con.prepareStatement(sql);
 			pst.setString(1, category);
-			
+
 			if (productName != "") {
 				pst.setString(2, productName);
-		}
+			}
 			ResultSet rs = pst.executeQuery();
 			while (rs.next()) {
 				Product product = new Product.ProductBuilder()
@@ -52,32 +53,32 @@ public class ProductDAO extends AbstractDAO {
 			e.printStackTrace();
 			return list;
 		} finally {
-		closeQuietly(pst, con);
+			closeQuietly(pst, con);
 		}
 
 	}
-	
-	public List<Product> viewProductsByCategory(String productName, String category, int offset, int noOfRecords) {
+
+	public List<Product> viewProductsByCategory(String productName,
+			String category, int offset, int noOfRecords) {
 		Connection con = null;
 		PreparedStatement pst = null;
 		List<Product> list = new ArrayList<Product>();
 		try {
 			con = getConnection();
-			
 			String sql = "select p.Product_Id, p.Product_Name, p.Product_Description from Product p left join Category c "
-					+"on p.Category_Id = c.Category_Id where c.Category_Name = ?";
-			if (productName != "") {
-					sql +=" and p.Product_Name REGEXP ?";
+					+ "on p.Category_Id = c.Category_Id where c.Category_Name = ?";
+			if ((productName != null) && (productName != "")) {
+				sql += " and p.Product_Name REGEXP ?";
 			}
 			sql += " limit ?, ?";
 			pst = con.prepareStatement(sql);
 			int k = 1;
 			pst.setString(k, category);
-			k++;		
+			k++;
 			if ((productName != null) && (productName != "")) {
 				pst.setString(k, productName);
 				k++;
-		}
+			}
 			pst.setInt(k, offset);
 			k++;
 			pst.setInt(k, noOfRecords);
@@ -95,12 +96,11 @@ public class ProductDAO extends AbstractDAO {
 			e.printStackTrace();
 			return list;
 		} finally {
-		closeQuietly(pst, con);
+			closeQuietly(pst, con);
 		}
 
 	}
-	
-	
+
 	public List<Product> viewAllProducts(int offset, int noOfRecords) {
 		Connection con = null;
 		PreparedStatement pst = null;
@@ -114,10 +114,10 @@ public class ProductDAO extends AbstractDAO {
 			ResultSet rs = pst.executeQuery();
 			while (rs.next()) {
 				Product product = new Product.ProductBuilder()
-				.id(rs.getInt("Product_Id"))
-				.productName(rs.getString("Product_Name"))
-				.supplierName(rs.getString("Supplier_Name"))
-				.price(rs.getDouble("Unit_Price")).build();
+						.id(rs.getInt("Product_Id"))
+						.productName(rs.getString("Product_Name"))
+						.supplierName(rs.getString("Supplier_Name"))
+						.price(rs.getDouble("Unit_Price")).build();
 				list.add(product);
 			}
 			return list;
@@ -151,8 +151,7 @@ public class ProductDAO extends AbstractDAO {
 		}
 
 	}
-	
-	
+
 	public Product getProduct(int id) {
 		Connection c = null;
 		PreparedStatement s = null;
@@ -163,10 +162,9 @@ public class ProductDAO extends AbstractDAO {
 			s.setInt(1, id);
 			ResultSet rs = s.executeQuery();
 			while (rs.next()) {
-				Product product = new Product.ProductBuilder()
-				.id(id)
-				.productName(rs.getString("Product_Name"))
-				.price(rs.getDouble("Unit_Price")).build();
+				Product product = new Product.ProductBuilder().id(id)
+						.productName(rs.getString("Product_Name"))
+						.price(rs.getDouble("Unit_Price")).build();
 				return product;
 			}
 			return null;
@@ -178,12 +176,13 @@ public class ProductDAO extends AbstractDAO {
 
 	}
 
-	public boolean addProduct(String name, String desc, String cat, String supplier, String price) {
+	public boolean addProduct(String name, String desc, String cat,
+			String supplier, String price) {
 		Connection con = null;
 		PreparedStatement pst = null;
 		try {
 			con = getConnection();
-			con.setAutoCommit(false); 
+			con.setAutoCommit(false);
 			String sql = "INSERT INTO Product (Product_Name, Product_Description, Category_Id, "
 					+ "Supplier_Id, Unit_Price, Date_From) values (?, ?, ?, ?, ?, curdate())";
 			pst = con.prepareStatement(sql);
@@ -202,13 +201,13 @@ public class ProductDAO extends AbstractDAO {
 			closeQuietly(pst, con);
 		}
 	}
-	
+
 	public boolean deleteProduct(int id) {
 		Connection con = null;
 		PreparedStatement pst = null;
 		try {
 			con = getConnection();
-			con.setAutoCommit(false); 
+			con.setAutoCommit(false);
 			String sql = "DELETE FROM Product WHERE Product_Id = ?";
 			pst = con.prepareStatement(sql);
 			pst.setInt(1, id);
@@ -220,15 +219,15 @@ public class ProductDAO extends AbstractDAO {
 			closeQuietly(pst, con);
 		}
 	}
-	
+
 	public boolean updateProduct(Product product) {
 		Connection con = null;
 		PreparedStatement pst = null;
 		try {
 			con = getConnection();
-			con.setAutoCommit(false); 
+			con.setAutoCommit(false);
 			String sql = "UPDATE Product SET Product_Name = ?, Product_Descpription = ?, Unit_Price = ?, "
-					+"Category_Id = ?, Supplier_Id = ? WHERE Product_Id = ?";
+					+ "Category_Id = ?, Supplier_Id = ? WHERE Product_Id = ?";
 			pst = con.prepareStatement(sql);
 			pst.setString(1, product.getProductName());
 			pst.setString(2, product.getProductDescription());
@@ -245,4 +244,3 @@ public class ProductDAO extends AbstractDAO {
 		}
 	}
 }
-
