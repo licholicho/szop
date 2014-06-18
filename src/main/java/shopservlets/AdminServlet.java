@@ -70,7 +70,7 @@ public class AdminServlet extends HttpServlet {
 			setLoginMessage(loginMessage);
 			auxMessage.setLoginMessage(loginMessage);
 			request.setAttribute("messageL", auxMessage);
-			isError = true;
+			isError = true; 
 		}
 
 		if (!isError) {
@@ -78,11 +78,11 @@ public class AdminServlet extends HttpServlet {
 			request.getSession().setAttribute("isadmin", 1);
 			ZlotyDekorator dekorator = new ZlotyDekorator();
 			request.getSession().setAttribute("dekorator", dekorator);
-			RequestDispatcher dis = request.getRequestDispatcher("/admin");
+			RequestDispatcher dis = request.getRequestDispatcher("/admin.jsp");
 			dis.forward(request, response);
 		} else {
 			auxMessage.setLogin(login);
-			RequestDispatcher dis = request.getRequestDispatcher("/admin");
+			RequestDispatcher dis = request.getRequestDispatcher("/admin.jsp");
 			dis.forward(request, response);
 		}
 		request.setAttribute("ma", auxMessage);

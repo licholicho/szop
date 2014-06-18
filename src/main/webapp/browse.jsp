@@ -24,7 +24,7 @@
 	</header>
 
 
-	<form method="post" action="/browse">
+	<form method="post" action="browse">
 		<table>
 			<tr>
 				<td>Nazwa produktu:</td>
@@ -49,6 +49,7 @@
 					<c:forEach var="prod" items="${productList}">
 						<tr>
 							<td>${prod.getProductName()}</td>
+							<td>${prod.getPrice()}</td>
 							<%@include file="session_admin.jsp"%>
 						</tr>
 					</c:forEach>
@@ -57,6 +58,7 @@
 					<c:forEach var="prod" items="${allList}">
 						<tr>
 							<td>${prod.getProductName()}</td>
+							<td>${prod.getPrice()}</td>
 							<%@include file="session_admin.jsp"%>
 						</tr>
 					</c:forEach>

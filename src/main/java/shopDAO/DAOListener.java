@@ -26,6 +26,7 @@ public class DAOListener implements ServletContextListener {
 
 	
 	public void contextInitialized(ServletContextEvent sce) {
+		System.out.println("Hello World");
 		InitialContext initContext;
 		DataSource ds = null;
 		CacheConfig cacheConfig = null;

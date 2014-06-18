@@ -1,6 +1,8 @@
 /update
+/updateproduct
 /browse
 /addproduct
 /newcat
 /newsupplier
 /admin
+/delete

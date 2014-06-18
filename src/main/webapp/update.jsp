@@ -25,7 +25,7 @@
 	<div id="main">
 		<div id="prawa">
 			<h3>Zaktualizuj produkt</h3>
-			<form method="post" action="/update">
+			<form method="post" action="updateproduct">
 
 				<ul>
 					<li id="li_1"><label for="element_1">Nazwa produktu </label>
@@ -58,7 +58,9 @@
 								</c:forEach>
 							</select>
 						</div></li>
-					<li><input id="saveForm" class="button_text" type="submit"
+					<li>
+						<input type="hidden" name="prodIdA" value="${prod.getId()}"> 
+					<input id="saveForm" class="button_text" type="submit"
 						name="submit" value="Aktualizuj" /></li>
 				</ul>
 			</form>

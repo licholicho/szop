@@ -25,7 +25,7 @@
 	<div id="main">
 		<div id="prawa">
 			<h3>Dodaj nowy produkt</h3>
-			<form method="post" action="/addproduct">
+			<form method="post" action="addproduct">
 
 				<ul>
 					<li id="li_1"><label for="element_1">Nazwa produktu </label>

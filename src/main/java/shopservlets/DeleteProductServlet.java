@@ -1,6 +1,7 @@
 package shopservlets;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -19,7 +20,9 @@ public class DeleteProductServlet extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		IProductDAO productdao = (IProductDAO) getServletContext().getAttribute("productDAO");
 		String prodId = request.getParameter("prodIdA");
-		productdao.deleteProduct(Integer.valueOf(prodId));
+		PrintWriter w = response.getWriter();
+		w.print(Integer.parseInt(prodId));
+		productdao.deleteProduct(Integer.parseInt(prodId));
 		RequestDispatcher view = request.getRequestDispatcher("/browse");
 		view.forward(request, response);
 

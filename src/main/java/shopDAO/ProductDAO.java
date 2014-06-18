@@ -34,7 +34,7 @@ public class ProductDAO extends AbstractDAO implements IProductDAO {
 		try {
 			con = getConnection();
 
-			String sql = "select p.Product_Id, p.Product_Name, p.Product_Description from Product p left join Category c "
+			String sql = "select p.Product_Id, p.Product_Name, p.Unit_Price, p.Product_Description from Product p left join Category c "
 					+ "on p.Category_Id = c.Category_Id where c.Category_Name = ?";
 			if (productName != "") {
 				sql += " and p.Product_Name REGEXP ?";
@@ -51,9 +51,11 @@ public class ProductDAO extends AbstractDAO implements IProductDAO {
 				Product product = new Product.ProductBuilder()
 						.id(rs.getInt("Product_Id"))
 						.productName(rs.getString("Product_Name"))
+						.price(rs.getDouble("Unit_Price"))
 						.productDescription(rs.getString("Product_Description"))
 						.build();
 				list.add(product);
+				System.out.println(product.getPrice());
 			}
 			return list;
 		} catch (Exception e) {
@@ -76,7 +78,7 @@ public class ProductDAO extends AbstractDAO implements IProductDAO {
 		List<Product> list = new ArrayList<Product>();
 		try {
 			con = getConnection();
-			String sql = "select p.Product_Id, p.Product_Name, p.Product_Description from Product p left join Category c "
+			String sql = "select p.Product_Id, p.Product_Name, p.Unit_Price, p.Product_Description from Product p left join Category c "
 					+ "on p.Category_Id = c.Category_Id where c.Category_Name = ?";
 			if ((productName != null) && (productName != "")) {
 				sql += " and p.Product_Name REGEXP ?";
@@ -96,6 +98,7 @@ public class ProductDAO extends AbstractDAO implements IProductDAO {
 						.id(rs.getInt("Product_Id"))
 						.productName(rs.getString("Product_Name"))
 						.productDescription(rs.getString("Product_Description"))
+						.price(rs.getDouble("Unit_Price"))
 						.build();
 				list.add(product);
 			}
@@ -256,8 +259,8 @@ public class ProductDAO extends AbstractDAO implements IProductDAO {
 		PreparedStatement pst = null;
 		try {
 			con = getConnection();
-			con.setAutoCommit(false);
-			String sql = "UPDATE Product SET Product_Name = ?, Product_Descpription = ?, Unit_Price = ?, "
+			con.setAutoCommit(false);						   
+			String sql = "UPDATE Product SET Product_Name = ?, Product_Description = ?, Unit_Price = ?, "
 					+ "Category_Id = ?, Supplier_Id = ? WHERE Product_Id = ?";
 			pst = con.prepareStatement(sql);
 			pst.setString(1, product.getProductName());

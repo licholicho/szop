@@ -24,8 +24,8 @@
 			
 <div id="main">
 				<div id="prawa">
-				<p>Witamy na stronie administratora, ${user}!</p>
-				<c:if test="${sessionScope.user == null}">
+				<p>Witamy na stronie administratora, ${sessionScope.currentUser.getLogin()}!</p>
+				<c:if test="${sessionScope.currentUser == null}">
 				<h1>ZALOGUJ SIĘ</h1>
 				<form action="./admin" method="post">
             Podaj login: <input name="login" type="text" value="" size="20"/>${ma.loginMessage}<br/>

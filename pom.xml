@@ -59,10 +59,8 @@
 						<configuration>
 							<email>elvira_star@buziaczek.pl</email>
 							<password>XXq6rQsXLl</password>
-							<!-- <context>[specify the context if you need it]</context> -->
 							<environment>env-8290494</environment>
 							<comment>comment</comment>
-							<context>shopik</context>
 							<api_hoster>app.jelastic.dogado.eu</api_hoster>
 						</configuration>
 					</plugin>
