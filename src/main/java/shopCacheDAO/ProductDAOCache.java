@@ -17,21 +17,6 @@ public class ProductDAOCache extends ADAOCache implements IProductDAO {
 	public ProductDAOCache(ProductDAO dao, CacheConfig cacheConfig) {
 		super(cacheConfig);
 		this.dao = dao;
-		// TODO Auto-generated constructor stub
-	}
-
-	@Override
-	public List<Product> viewProductsByCategory(String productName,
-			String category) {
-		@SuppressWarnings("unchecked")
-		final String key = ProductDAO.TABLE + productName + category;
-		List<Product> listProd = (List<Product>) c.get(key);
-		if (listProd == null) {
-			listProd = dao.viewProductsByCategory(productName, category);
-			c.set(key, defaultTime, listProd);
-			keysToBeDeletedWithUpdate.add(key);
-		}
-		return listProd;
 	}
 
 	@Override
@@ -99,7 +84,7 @@ public class ProductDAOCache extends ADAOCache implements IProductDAO {
 				i.remove();
 			}
 		}
-		
+
 	}
 
 	@Override
@@ -114,6 +99,20 @@ public class ProductDAOCache extends ADAOCache implements IProductDAO {
 		boolean updated = dao.updateProduct(product);
 		deleteAllFromCache(updated);
 		return updated;
+	}
+
+	@Override
+	public List<Product> viewProductsByCategory(String productName,
+			String category) {
+		@SuppressWarnings("unchecked")
+		final String key = ProductDAO.TABLE + productName + category;
+		List<Product> listProd = (List<Product>) c.get(key);
+		if (listProd == null) {
+			listProd = dao.viewProductsByCategory(productName, category);
+			c.set(key, defaultTime, listProd);
+			keysToBeDeletedWithUpdate.add(key);
+		}
+		return listProd;
 	}
 
 }

@@ -25,7 +25,7 @@
       <c:forEach var="product" items="${cart.getList()}" varStatus="c">
       				 <tr>                    
                     <td>${product.getProductName()}</td>
-                    <td>${product.getPrice()}0 zl</td>
+                    <td>${product.getPriceZl()}</td>
                 <!--    <td><a id="cart" href="remove/${c.index}">Usun</a> </td> -->  
                     <td>	<form name="myremove" action="remove" method="POST">
 									<input type="hidden" name="toRemove" value="${c.index}">
@@ -49,7 +49,7 @@
 </form>
 </div>
 
-<form method="get" action="./payment">
+<form method="get" action="payment">
 <input type="submit" value="Przejdz do platnosci">
 </form>
 
